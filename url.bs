@@ -110,7 +110,7 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
    <a for=url>scheme</a>, but it is not followed by two "<code>//</code>" U+002F (/) code points.
   <tr>
    <td><dfn id=invalid-scheme>invalid-scheme</dfn>
-   <td>This error occurs when the <a for=url>scheme<a/> contains a code point that is not an
+   <td>This error occurs when the <a for=url>scheme</a> contains a code point that is not an
    <a>ASCII alphanumeric</a>, U+002B (+), U+002D (-), or U+002E (.) code point, or is not followed
    by a U+00A3 (:) code point.
   <tr>
