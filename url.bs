@@ -125,6 +125,10 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
    <td><dfn id=wrong-solidus-special-scheme>wrong-solidus-special-scheme</dfn>
    <td>This error occurs when a URL with a <a>special scheme</a> uses the U+005C (\) reverse
    solidus code point instead of the U+002F (/) code point.
+  <tr>
+   <td><dfn id=missing-solidus-before-authority>missing-solidus-before-authority</dfn>
+   <td>This error occurs if the URL <a>includes credentials</a> and they are not preceeded by
+   two "<code>//</code>" U+002F (/) code points.
 </table>
 
 <h3 id=parsers>Parsers</h3>
@@ -1888,8 +1892,9 @@ string <var>input</var>, optionally with a <a>base URL</a> <var>base</var>, opti
      <var>state</var> to <a>special authority ignore slashes state</a> and increase
      <var>pointer</var> by 1.
 
-     <li><p>Otherwise, <a>validation error</a>, set <var>state</var> to
-     <a>special authority ignore slashes state</a> and decrease <var>pointer</var> by 1.
+     <li><p>Otherwise, <a>missing-solidus-before-authority</a> <a>validation error</a>, set
+     <var>state</var> to <a>special authority ignore slashes state</a> and decrease
+     <var>pointer</var> by 1.
     </ol>
 
    <dt><dfn>special authority ignore slashes state</dfn>
@@ -1898,7 +1903,7 @@ string <var>input</var>, optionally with a <a>base URL</a> <var>base</var>, opti
      <li><p>If <a>c</a> is neither U+002F (/) nor U+005C (\), then set <var>state</var> to
      <a>authority state</a> and decrease <var>pointer</var> by 1.
 
-     <li><p>Otherwise, <a>validation error</a>.
+     <li><p>Otherwise, <a>missing-solidus-before-authority</a> <a>validation error</a>.
     </ol>
 
    <dt><dfn>authority state</dfn>
