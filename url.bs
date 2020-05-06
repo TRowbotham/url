@@ -175,6 +175,11 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
    <td><dfn id=invalid-url-code-point>invalid-url-code-point</dfn>
    <td>This error occurs when a code point that is not a <a>url code point</a> or U+0025 (%) in the
    URL's <a>path</a>, <a>query</a>, or <a for=url>fragment</a>.
+  <tr>
+   <td><dfn id=unescaped-percent-sign>unescaped-percent-sign</dfn>
+   <td>This error occurs when a U+0025 (%) code point is found that is not followed by two
+   <a>ASCII hex digits</a>, representing a <a>percent-encoded byte</a>, in the URL's <a>path</a>,
+   <a>query</a>, or <a for=url>fragment</a>.
 </table>
 
 <h3 id=parsers>Parsers</h3>
@@ -2397,7 +2402,7 @@ string <var>input</var>, optionally with a <a>base URL</a> <var>base</var>, opti
        <a>invalid-url-code-point</a> <a>validation error</a>.
 
        <li><p>If <a>c</a> is U+0025 (%) and <a>remaining</a> does not start with two
-       <a>ASCII hex digits</a>, <a>validation error</a>.
+       <a>ASCII hex digits</a>, <a>unescaped-percent-sign</a> <a>validation error</a>.
 
        <li><p><a for="code point">UTF-8 percent-encode</a> <a>c</a> using the
        <a>path percent-encode set</a> and append the result to <var>buffer</var>.
@@ -2421,7 +2426,7 @@ string <var>input</var>, optionally with a <a>base URL</a> <var>base</var>, opti
        U+0025 (%), <a>invalid-url-code-point</a> <a>validation error</a>.
 
        <li><p>If <a>c</a> is U+0025 (%) and <a>remaining</a> does not start with two
-       <a>ASCII hex digits</a>, <a>validation error</a>.
+       <a>ASCII hex digits</a>, <a>unescaped-percent-sign</a> <a>validation error</a>.
 
        <li><p>If <a>c</a> is not the <a>EOF code point</a>,
        <a for="code point">UTF-8 percent-encode</a> <a>c</a> using the
@@ -2456,7 +2461,7 @@ string <var>input</var>, optionally with a <a>base URL</a> <var>base</var>, opti
        <a>invalid-url-code-point</a> <a>validation error</a>.
 
        <li><p>If <a>c</a> is U+0025 (%) and <a>remaining</a> does not start with two
-       <a>ASCII hex digits</a>, <a>validation error</a>.
+       <a>ASCII hex digits</a>, <a>unescaped-percent-sign</a> <a>validation error</a>.
 
        <li><p>Let <var>bytes</var> be the result of <a lt=encode>encoding</a> <a>c</a> using
        <var>encoding</var>.
@@ -2512,7 +2517,7 @@ string <var>input</var>, optionally with a <a>base URL</a> <var>base</var>, opti
        <a>invalid-url-code-point</a> <a>validation error</a>.
 
        <li><p>If <a>c</a> is U+0025 (%) and <a>remaining</a> does not start with two
-       <a>ASCII hex digits</a>, <a>validation error</a>.
+       <a>ASCII hex digits</a>, <a>unescaped-percent-sign</a> <a>validation error</a>.
 
        <li><p><a for="code point">UTF-8 percent-encode</a> <a>c</a> using the
        <a>fragment percent-encode set</a> and append the result to <var>url</var>'s
