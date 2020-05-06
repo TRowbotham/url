@@ -186,6 +186,9 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
   <tr>
    <td><dfn id=ascii-idn-failure>ascii-idn-failure</dfn>
    <td>This error occurs when transforming the domain to ASCII using IDN records an error.
+  <tr>
+   <td><dfn id=forbidden-host-code-point>forbidden-host-code-point</dfn>
+   <td>This error occurs when the host contains a <a>forbidden host code point</a>.
 </table>
 
 <h3 id=parsers>Parsers</h3>
@@ -666,7 +669,7 @@ string <var>input</var> with an optional boolean <var>isNotSpecial</var>, and th
  <a>validation error</a>, return failure.
 
  <li><p>If <var>asciiDomain</var> contains a <a>forbidden host code point</a>,
- <a>validation error</a>, return failure.
+ <a>forbidden-host-code-point</a> <a>validation error</a>, return failure.
 
  <li><p>Let <var>ipv4Host</var> be the result of <a lt="IPv4 parser">IPv4 parsing</a>
  <var>asciiDomain</var>.
