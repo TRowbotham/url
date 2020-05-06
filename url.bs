@@ -137,6 +137,9 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
    <td><dfn id=missing-credentials>missing-credentials</dfn>
    <td>This error occurs when an U+0040 (@) code point is found, but the URL does not
    <a>include credentials</a>.
+  <tr>
+   <td><dfn id=unexpected-port-without-host>unexpected-port-without-host</dfn>
+   <td>This error occurs when the URL contains a <a>port</a>, but no <a for=url>host</a>.
 </table>
 
 <h3 id=parsers>Parsers</h3>
@@ -1986,7 +1989,8 @@ string <var>input</var>, optionally with a <a>base URL</a> <var>base</var>, opti
       <p>Otherwise, if <a>c</a> is U+003A (:) and the <var>[] flag</var> is unset, then:
 
       <ol>
-       <li><p>If <var>buffer</var> is the empty string, <a>validation error</a>, return failure.
+       <li><p>If <var>buffer</var> is the empty string, <a>unexpected-port-without-host</a>
+       <a>validation error</a>, return failure.
        <!-- No URLs with port, but without host. -->
 
        <li><p>Let <var>host</var> be the result of <a>host parsing</a> <var>buffer</var> with
