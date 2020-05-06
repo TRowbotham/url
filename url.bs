@@ -180,6 +180,9 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
    <td>This error occurs when a U+0025 (%) code point is found that is not followed by two
    <a>ASCII hex digits</a>, representing a <a>percent-encoded byte</a>, in the URL's <a>path</a>,
    <a>query</a>, or <a for=url>fragment</a>.
+  <tr>
+   <td><dfn id=unclosed-ipv6-address>unclosed-ipv6-address</dfn>
+   <td>This error occurs when an IPv6 address is missing the closing U+005D (]) code point.
 </table>
 
 <h3 id=parsers>Parsers</h3>
@@ -633,7 +636,8 @@ string <var>input</var> with an optional boolean <var>isNotSpecial</var>, and th
   <p>If <var>input</var> starts with U+005B ([), then:
 
   <ol>
-   <li><p>If <var>input</var> does not end with U+005D (]), <a>validation error</a>, return failure.
+   <li><p>If <var>input</var> does not end with U+005D (]), <a>unclosed-ipv6-address</a>
+   <a>validation error</a>, return failure.
 
    <li><p>Return the result of <a lt="IPv6 parser">IPv6 parsing</a> <var>input</var> with its
    leading U+005B ([) and trailing U+005D (]) removed.
