@@ -193,6 +193,9 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
    <td><dfn id=unexpected-non-decimal-number>unexpected-non-decimal-number</dfn>
    <td>This occurs when the IPv4 address contains numbers expressed using hexadecimal or octal
    digits.
+  <tr>
+   <td><dfn id=ipv4-octet-out-of-range>ipv4-octet-out-of-range</dfn>
+   <td>This error occurs when an IPv4 octet exceeds 255.
 </table>
 
 <h3 id=parsers>Parsers</h3>
@@ -744,14 +747,15 @@ these steps:
   treated as an IPv4 address (or failure). And therefore error reporting resumes.
  </li>
 
- <li><p>If any item in <var>numbers</var> is greater than 255, <a>validation error</a>.
+ <li><p>If any item in <var>numbers</var> is greater than 255, <a>ipv4-octet-out-of-range</a>
+ <a>validation error</a>.
 
  <li><p>If any but the last <a for=list>item</a> in <var>numbers</var> is greater than 255, then
  return failure.
 
  <li><p>If the last <a for=list>item</a> in <var>numbers</var> is greater than or equal to
- 256<sup>(5 &minus; <var>numbers</var>'s <a for=list>size</a>)</sup>, <a>validation error</a>,
- return failure.
+ 256<sup>(5 &minus; <var>numbers</var>'s <a for=list>size</a>)</sup>,
+ <a>ipv4-octet-out-of-range</a> <a>validation error</a>, return failure.
 
  <li><p>Let <var>ipv4</var> be the last <a for=list>item</a> in <var>numbers</var>.
 
