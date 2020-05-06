@@ -232,6 +232,10 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
    <td><dfn id=ipv4-in-ipv6-too-many-octets>ipv4-in-ipv6-too-many-octets</dfn>
    <td>This error occurs when an IPv6 address contains an IPv4 address and the IPv4 address has
    more than 4 octets.
+  <tr>
+   <td><dfn id=ipv4-in-ipv6-unexpected-code-point>ipv4-in-ipv6-unexpected-code-point</dfn>
+   <td>This error occurs when an IPv6 address contains an IPv4 address whose octets contains code
+   points other than <a>ASCII digits</a> or is an empty string.
 </table>
 
 <h3 id=parsers>Parsers</h3>
@@ -941,7 +945,8 @@ then runs these steps:
          <li>Otherwise, <a>ipv4-in-ipv6-too-many-octets</a> <a>validation error</a>, return failure.
         </ol>
 
-       <li><p>If <a>c</a> is not an <a>ASCII digit</a>, <a>validation error</a>, return failure.
+       <li><p>If <a>c</a> is not an <a>ASCII digit</a>, <a>ipv4-in-ipv6-unexpected-code-point</a>
+       <a>validation error</a>, return failure.
        <!-- prevent the empty string -->
 
        <li>
