@@ -140,6 +140,10 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
   <tr>
    <td><dfn id=unexpected-port-without-host>unexpected-port-without-host</dfn>
    <td>This error occurs when the URL contains a <a>port</a>, but no <a for=url>host</a>.
+  <tr>
+   <td><dfn id=empty-host-special-scheme>empty-host-special-scheme</dfn>
+   <td>This error occurs when a URL with a <a>special scheme</a> does not contain a
+   <a for=url>host</a>.
 </table>
 
 <h3 id=parsers>Parsers</h3>
@@ -2018,7 +2022,7 @@ string <var>input</var>, optionally with a <a>base URL</a> <var>base</var>, opti
 
       <ol>
        <li><p>If <var>url</var> <a>is special</a> and <var>buffer</var> is the empty string,
-       <a>validation error</a>, return failure.
+       <a>empty-host-special-scheme</a> <a>validation error</a>, return failure.
        <!-- http://? -> failure
             test://? -> test://? -->
 
