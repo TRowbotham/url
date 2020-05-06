@@ -210,6 +210,13 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
    <td><dfn id=ipv4-in-ipv6-empty-octet>ipv4-in-ipv6-empty-octet</dfn>
    <td>This error occurs when an IPv6 address that contains an IPv4 address has an empty octet in
    the IPv4 address.
+  <tr>
+   <td><dfn id=ipv4-in-ipv6-too-many-pieces>ipv4-in-ipv6-too-many-pieces</dfn>
+   <td>This error occurs when an IPv6 address contains an IPv4 address and the IPv6 address has
+   more than 6 pieces.
+  <tr>
+   <td><dfn id=ipv6-unexpected-eof>ipv6-unexpected-eof</dfn>
+   <td>This error occurs when an IPv6 address unexpectedly ends.
 </table>
 
 <h3 id=parsers>Parsers</h3>
@@ -898,7 +905,8 @@ then runs these steps:
 
      <li><p>Decrease <var>pointer</var> by <var>length</var>.
 
-     <li><p>If <var>pieceIndex</var> is greater than 6, <a>validation error</a>, return failure.
+     <li><p>If <var>pieceIndex</var> is greater than 6, <a>ipv4-in-ipv6-too-many-pieces</a>
+     <a>validation error</a>, return failure.
 
      <li><p>Let <var>numbersSeen</var> be 0.
 
@@ -960,7 +968,8 @@ then runs these steps:
     <ol>
      <li><p>Increase <var>pointer</var> by 1.
 
-     <li><p>If <a>c</a> is the <a>EOF code point</a>, <a>validation error</a>, return failure.
+     <li><p>If <a>c</a> is the <a>EOF code point</a>, <a>ipv6-unexpected-eof</a>
+     <a>validation error</a>, return failure.
     </ol>
 
    <li><p>Otherwise, if <a>c</a> is not the <a>EOF code point</a>, <a>validation error</a>, return
