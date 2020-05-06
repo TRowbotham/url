@@ -117,6 +117,10 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
    <td><dfn id=missing-scheme-non-relative-url>missing-scheme-non-relative-url</dfn>
    <td>This error occurs when no <a for=url>scheme</a> is present and either no <a>base URL</a>
    was provided or the <a>base URL</a> cannot be used as a <a>base URL</a>.
+  <tr>
+   <td><dfn id=relative-url-missing-beginning-solidus>relative-url-missing-beginning-solidus</dfn>
+   <td>This error occurs when a <a>relative-URL String</a> is given that does not begin with a
+   U+002F (/) code point.
 </table>
 
 <h3 id=parsers>Parsers</h3>
@@ -1785,8 +1789,8 @@ string <var>input</var>, optionally with a <a>base URL</a> <var>base</var>, opti
      <var>state</var> to <a>special authority ignore slashes state</a> and increase
      <var>pointer</var> by 1.
 
-     <li><p>Otherwise, <a>validation error</a>, set <var>state</var> to <a>relative state</a> and
-     decrease <var>pointer</var> by 1.
+     <li><p>Otherwise, <a>relative-url-missing-beginning-solidus</a> <a>validation error</a>, set
+     <var>state</var> to <a>relative state</a> and decrease <var>pointer</var> by 1.
     </ol>
 
    <dt><dfn>path or authority state</dfn>
