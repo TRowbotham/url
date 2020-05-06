@@ -129,6 +129,10 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
    <td><dfn id=missing-solidus-before-authority>missing-solidus-before-authority</dfn>
    <td>This error occurs if the URL <a>includes credentials</a> and they are not preceeded by
    two "<code>//</code>" U+002F (/) code points.
+  <tr>
+   <td><dfn id=unexpected-@-code-point>unexpected-@-code-point</dfn>
+   <td>This error occurs when the URL <a>includes credentials</a>, as the authority porition of
+   a URL is considered invalid.
 </table>
 
 <h3 id=parsers>Parsers</h3>
@@ -1913,7 +1917,7 @@ string <var>input</var>, optionally with a <a>base URL</a> <var>base</var>, opti
       <p>If <a>c</a> is U+0040 (@), then:
 
       <ol>
-       <li><p><a>Validation error</a>.
+       <li><p><a>unexpected-@-code-point</a> <a>Validation error</a>.
 
        <li><p>If the <var>@ flag</var> is set, prepend "<code>%40</code>" to
        <var>buffer</var>.
