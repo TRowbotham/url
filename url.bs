@@ -108,6 +108,11 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
    <td><dfn id=file-scheme-missing-following-solidus>file-scheme-missing-following-solidus</dfn>
    <td>This error occurs when the URL parser encounters a URL with a <code>file</code>
    <a for=url>scheme</a>, but it is not followed by two "<code>//</code>" U+002F (/) code points.
+  <tr>
+   <td><dfn id=invalid-scheme>invalid-scheme</dfn>
+   <td>This error occurs when the <a for=url>scheme<a/> contains a code point that is not an
+   <a>ASCII alphanumeric</a>, U+002B (+), U+002D (-), or U+002E (.) code point, or is not followed
+   by a U+00A3 (:) code point.
 </table>
 
 <h3 id=parsers>Parsers</h3>
@@ -1737,7 +1742,7 @@ string <var>input</var>, optionally with a <a>base URL</a> <var>base</var>, opti
      in <var>input</var>).
 
      <li>
-      <p>Otherwise, <a>validation error</a>, return failure.
+      <p>Otherwise, <a>invalid-scheme</a> <a>validation error</a>, return failure.
 
       <p class=note>This indication of failure is used exclusively by the {{Location}} object's
       {{Location/protocol}} setter. Furthermore, the non-failure termination earlier in this state
