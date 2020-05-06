@@ -224,6 +224,10 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
   <tr>
    <td><dfn id=ipv6-too-few-pieces>ipv6-too-few-pieces</dfn>
    <td>This error occurs when an uncompressed IPv6 address contains fewer than 8 peices.
+  <tr>
+   <td><dfn id=opaque-host-forbidden-code-point>opaque-host-forbidden-code-point</dfn>
+   <td>This error occurs when a <a>opaque host</a> contains a <a>forbidden host code point</a>
+   minus the U+0025 (%) code point.
 </table>
 
 <h3 id=parsers>Parsers</h3>
@@ -1014,7 +1018,7 @@ then runs these steps:
 
 <ol>
  <li><p>If <var>input</var> contains a <a>forbidden host code point</a> excluding U+0025 (%),
- <a>validation error</a>, return failure.
+ <a>opaque-host-forbidden-code-point</a> <a>validation error</a>, return failure.
 
  <li><p>If <var>input</var> contains a <a>code point</a> that is not a <a>URL code point</a> and not
  U+0025 (%), <a>validation error</a>.
