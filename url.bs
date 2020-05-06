@@ -206,6 +206,10 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
   <tr>
    <td><dfn id=ipv6-multiple-compression>ipv6-multiple-compression</dfn>
    <td>This error occurs when an IPv6 address is compressed in more than one spot.
+  <tr>
+   <td><dfn id=ipv4-in-ipv6-empty-octet>ipv4-in-ipv6-empty-octet</dfn>
+   <td>This error occurs when an IPv6 address that contains an IPv4 address has an empty octet in
+   the IPv4 address.
 </table>
 
 <h3 id=parsers>Parsers</h3>
@@ -889,7 +893,8 @@ then runs these steps:
     <p>If <a>c</a> is U+002E (.), then:
 
     <ol>
-     <li><p>If <var>length</var> is 0, <a>validation error</a>, return failure.
+     <li><p>If <var>length</var> is 0, <a>ipv4-in-ipv6-empty-octet</a> <a>validation error</a>,
+     return failure.
 
      <li><p>Decrease <var>pointer</var> by <var>length</var>.
 
