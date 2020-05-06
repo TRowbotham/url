@@ -104,6 +104,10 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
    <td><dfn id=invalid-scheme-start-code-point>invalid-scheme-start-code-point</dfn>
    <td>This error occurs when the first code point of a URL's scheme is not an <a>ASCII alpha</a>
    code point.
+  <tr>
+   <td><dfn id=file-scheme-missing-following-solidus>file-scheme-missing-following-solidus</dfn>
+   <td>This error occurs when the URL parser encounters a URL with a <code>file</code>
+   <a for=url>scheme</a>, but it is not followed by two "<code>//</code>" U+002F (/) code points.
 </table>
 
 <h3 id=parsers>Parsers</h3>
@@ -1703,7 +1707,7 @@ string <var>input</var>, optionally with a <a>base URL</a> <var>base</var>, opti
 
         <ol>
          <li><p>If <a>remaining</a> does not start with "<code>//</code>",
-         <a>validation error</a>.
+         <a>file-scheme-missing-following-solidus</a> <a>validation error</a>.
 
          <li><p>Set <var>state</var> to <a>file state</a>.
         </ol>
