@@ -155,6 +155,11 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
   <tr>
    <td><dfn id=invalid-port>invalid-port</dfn>
    <td>This error occurs when a non-integer value is found when parsing the <a>port</a>.
+  <tr>
+   <td><dfn id=unexpected-windows-drive-letter>unexpected-windows-drive-letter</dfn>
+   <td>This error occurs when a <a>relative-URL string</a>
+   <a>starts with a Windows drive letter</a> and the <a>base URL</a>'s <a>scheme</a> is
+   "<code>file</code>".
 </table>
 
 <h3 id=parsers>Parsers</h3>
@@ -2159,7 +2164,7 @@ string <var>input</var>, optionally with a <a>base URL</a> <var>base</var>, opti
 
           <p class=note>This is a (platform-independent) Windows drive letter quirk.
 
-         <li><p>Otherwise, <a>validation error</a>.
+         <li><p>Otherwise, <a>unexpected-windows-drive-letter</a> <a>validation error</a>.
 
          <li><p>Set <var>state</var> to <a>path state</a> and decrease <var>pointer</var> by 1.
         </ol>
