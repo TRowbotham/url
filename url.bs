@@ -189,6 +189,10 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
   <tr>
    <td><dfn id=forbidden-host-code-point>forbidden-host-code-point</dfn>
    <td>This error occurs when the host contains a <a>forbidden host code point</a>.
+  <tr>
+   <td><dfn id=unexpected-non-decimal-number>unexpected-non-decimal-number</dfn>
+   <td>This occurs when the IPv4 address contains numbers expressed using hexadecimal or octal
+   digits.
 </table>
 
 <h3 id=parsers>Parsers</h3>
@@ -733,7 +737,8 @@ these steps:
   </ol>
 
  <li>
-  <p>If <var>validationError</var> is true, <a>validation error</a>.
+  <p>If <var>validationError</var> is true, <a>unexpected-non-decimal-number</a>
+  <a>validation error</a>.
 
   <p class="note">At this point each part was parsed into a number and <var>input</var> will be
   treated as an IPv4 address (or failure). And therefore error reporting resumes.
