@@ -113,6 +113,10 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
    <td>This error occurs when the <a for=url>scheme<a/> contains a code point that is not an
    <a>ASCII alphanumeric</a>, U+002B (+), U+002D (-), or U+002E (.) code point, or is not followed
    by a U+00A3 (:) code point.
+  <tr>
+   <td><dfn id=missing-scheme-non-relative-url>missing-scheme-non-relative-url</dfn>
+   <td>This error occurs when no <a for=url>scheme</a> is present and either no <a>base URL</a>
+   was provided or the <a>base URL</a> cannot be used as a <a>base URL</a>.
 </table>
 
 <h3 id=parsers>Parsers</h3>
@@ -1754,7 +1758,7 @@ string <var>input</var>, optionally with a <a>base URL</a> <var>base</var>, opti
     <ol>
      <li><p>If <var>base</var> is null, or <var>base</var>'s
      <a for=url>cannot-be-a-base-URL flag</a> is set and <a>c</a> is not U+0023 (#),
-     <a>validation error</a>, return failure.
+     <a>missing-scheme-non-relative-url</a> <a>validation error</a>, return failure.
 
      <li><p>Otherwise, if <var>base</var>'s <a for=url>cannot-be-a-base-URL flag</a> is set and
      <a>c</a> is U+0023 (#), set <var>url</var>'s <a for=url>scheme</a> to
