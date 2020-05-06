@@ -200,6 +200,9 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
    <td><dfn id=invalid-compressed-ipv6-address>invalid-compressed-ipv6-address</dfn>
    <td>This error occurs when an IPv6 address begins with improper compression.
    (e.g. [:1] instead of [::1])
+  <tr>
+   <td><dfn id=ipv6-too-many-pieces>ipv6-too-many-pieces</dfn>
+   <td>This error occurs when an IPv6 address contains more than 8 pieces.
 </table>
 
 <h3 id=parsers>Parsers</h3>
@@ -859,7 +862,8 @@ then runs these steps:
   <p>While <a>c</a> is not the <a>EOF code point</a>:
 
   <ol>
-   <li><p>If <var>pieceIndex</var> is 8, <a>validation error</a>, return failure.
+   <li><p>If <var>pieceIndex</var> is 8, <a>ipv6-too-many-pieces</a>
+   <a>validation error</a>, return failure.
 
    <li>
     <p>If <a>c</a> is U+003A (:), then:
