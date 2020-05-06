@@ -85,6 +85,18 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
  unclear to other developers.
 </div>
 
+<table>
+ <thead>
+  <tr>
+   <th>Error Code
+   <th>Error Message
+ <tbody>
+  <tr>
+   <td><dfn id=unexpected-c0-control-or-space>unexpected-c0-control-or-space</dfn>
+   <td>This error occurs when the input to the URL parser contains leading or trailing
+   <a>C0 control or space</a> code points. The URL parser subsequently strips any matching code
+   points.
+</table>
 
 <h3 id=parsers>Parsers</h3>
 
@@ -1587,7 +1599,7 @@ string <var>input</var>, optionally with a <a>base URL</a> <var>base</var>, opti
    <li><p>Set <var>url</var> to a new <a for=/>URL</a>.
 
    <li><p>If <var>input</var> contains any leading or trailing <a>C0 control or space</a>,
-   <a>validation error</a>.
+   <a>unexpected-c0-control-or-space</a> <a>validation error</a>.
 
    <li><p>Remove any leading and trailing <a>C0 control or space</a> from <var>input</var>.
   </ol>
