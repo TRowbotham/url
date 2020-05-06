@@ -121,6 +121,10 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
    <td><dfn id=relative-url-missing-beginning-solidus>relative-url-missing-beginning-solidus</dfn>
    <td>This error occurs when a <a>relative-URL String</a> is given that does not begin with a
    U+002F (/) code point.
+  <tr>
+   <td><dfn id=wrong-solidus-special-scheme>wrong-solidus-special-scheme</dfn>
+   <td>This error occurs when a URL with a <a>special scheme</a> uses the U+005C (\) reverse
+   solidus code point instead of the U+002F (/) code point.
 </table>
 
 <h3 id=parsers>Parsers</h3>
@@ -1810,7 +1814,8 @@ string <var>input</var>, optionally with a <a>base URL</a> <var>base</var>, opti
      <li><p>If <a>c</a> is U+002F (/), then set <var>state</var> to <a>relative slash state</a>.
 
      <li><p>Otherwise, if <var>url</var> <a>is special</a> and <a>c</a> is U+005C (\),
-     <a>validation error</a>, set <var>state</var> to <a>relative slash state</a>.
+     <a>wrong-solidus-special-scheme</a> <a>validation error</a>, set <var>state</var> to
+     <a>relative slash state</a>.
 
      <li>
       <p>Otherwise:
@@ -1855,7 +1860,8 @@ string <var>input</var>, optionally with a <a>base URL</a> <var>base</var>, opti
       <p>If <var>url</var> <a>is special</a> and <a>c</a> is U+002F (/) or U+005C (\), then:
 
       <ol>
-       <li><p>If <a>c</a> is U+005C (\), <a>validation error</a>.
+       <li><p>If <a>c</a> is U+005C (\), <a>wrong-solidus-special-scheme</a>
+       <a>validation error</a>.
 
        <li><p>Set <var>state</var> to <a>special authority ignore slashes state</a>.
       </ol>
@@ -2079,7 +2085,8 @@ string <var>input</var>, optionally with a <a>base URL</a> <var>base</var>, opti
       <p>If <a>c</a> is U+002F (/) or U+005C (\), then:
 
       <ol>
-       <li><p>If <a>c</a> is U+005C (\), <a>validation error</a>.
+       <li><p>If <a>c</a> is U+005C (\), <a>wrong-solidus-special-scheme</a>
+       <a>validation error</a>.
 
        <li><p>Set <var>state</var> to <a>file slash state</a>.
       </ol>
@@ -2137,7 +2144,8 @@ string <var>input</var>, optionally with a <a>base URL</a> <var>base</var>, opti
       <p>If <a>c</a> is U+002F (/) or U+005C (\), then:
 
       <ol>
-       <li><p>If <a>c</a> is U+005C (\), <a>validation error</a>.
+       <li><p>If <a>c</a> is U+005C (\), <a>wrong-solidus-special-scheme</a>
+       <a>validation error</a>.
 
        <li><p>Set <var>state</var> to <a>file host state</a>.
       </ol>
@@ -2227,7 +2235,8 @@ string <var>input</var>, optionally with a <a>base URL</a> <var>base</var>, opti
       <p>If <var>url</var> <a>is special</a>, then:
 
       <ol>
-       <li><p>If <a>c</a> is U+005C (\), <a>validation error</a>.
+       <li><p>If <a>c</a> is U+005C (\), <a>wrong-solidus-special-scheme</a>
+       <a>validation error</a>.
 
        <li><p>Set <var>state</var> to <a>path state</a>.
 
@@ -2269,7 +2278,7 @@ string <var>input</var>, optionally with a <a>base URL</a> <var>base</var>, opti
 
       <ol>
        <li><p>If <var>url</var> <a>is special</a> and <a>c</a> is U+005C (\),
-       <a>validation error</a>.
+       <a>wrong-solidus-special-scheme</a> <a>validation error</a>.
 
        <li>
         <p>If <var>buffer</var> is a <a>double-dot path segment</a>, then:
