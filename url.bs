@@ -96,6 +96,10 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
    <td>This error occurs when the input to the URL parser contains leading or trailing
    <a>C0 control or space</a> code points. The URL parser subsequently strips any matching code
    points.
+  <tr>
+   <td><dfn id=unexpected-ascii-tab-or-newline>unexpected-ascii-tab-or-newline</dfn>
+   <td>This error occurs when the input to the URL parser contains <a>ASCII tab or newline</a> code
+   points. The URL parser subsequently strips any matching code points.
 </table>
 
 <h3 id=parsers>Parsers</h3>
@@ -1604,7 +1608,8 @@ string <var>input</var>, optionally with a <a>base URL</a> <var>base</var>, opti
    <li><p>Remove any leading and trailing <a>C0 control or space</a> from <var>input</var>.
   </ol>
 
- <li><p>If <var>input</var> contains any <a>ASCII tab or newline</a>, <a>validation error</a>.
+ <li><p>If <var>input</var> contains any <a>ASCII tab or newline</a>,
+ <a>unexpected-ascii-tab-or-newline</a> <a>validation error</a>.
 
  <li><p>Remove all <a>ASCII tab or newline</a> from <var>input</var>.
 
