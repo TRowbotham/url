@@ -160,6 +160,9 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
    <td>This error occurs when a <a>relative-URL string</a>
    <a>starts with a Windows drive letter</a> and the <a>base URL</a>'s <a>scheme</a> is
    "<code>file</code>".
+  <tr>
+   <td><dfn id=unexpected-windows-drive-letter-host>unexpected-windows-drive-letter-host</dfn>
+   <td>???
 </table>
 
 <h3 id=parsers>Parsers</h3>
@@ -2224,8 +2227,8 @@ string <var>input</var>, optionally with a <a>base URL</a> <var>base</var>, opti
       <ol>
        <li>
         <p>If <var>state override</var> is not given and <var>buffer</var> is a
-        <a>Windows drive letter</a>, <a>validation error</a>, set <var>state</var> to
-        <a>path state</a>.
+        <a>Windows drive letter</a>, <a>unexpected-windows-drive-letter-host</a>
+        <a>validation error</a>, set <var>state</var> to <a>path state</a>.
 
         <p class=note>This is a (platform-independent) Windows drive letter quirk. <var>buffer</var>
         is not reset here and instead used in the <a>path state</a>.
