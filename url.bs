@@ -133,6 +133,10 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
    <td><dfn id=unexpected-@-code-point>unexpected-@-code-point</dfn>
    <td>This error occurs when the URL <a>includes credentials</a>, as the authority porition of
    a URL is considered invalid.
+  <tr>
+   <td><dfn id=missing-credentials>missing-credentials</dfn>
+   <td>This error occurs when an U+0040 (@) code point is found, but the URL does not
+   <a>include credentials</a>.
 </table>
 
 <h3 id=parsers>Parsers</h3>
@@ -1957,7 +1961,7 @@ string <var>input</var>, optionally with a <a>base URL</a> <var>base</var>, opti
 
       <ol>
        <li><p>If <var>@ flag</var> is set and <var>buffer</var> is the empty string,
-       <a>validation error</a>, return failure.
+       <a>missing-credentials</a> <a>validation error</a>, return failure.
        <!-- No URLs with userinfo, but without host. For special URLs it would also not be
             idempotent:
             https://@/example.org/ -> https:///example.org/ -> https://example.org/ -->
