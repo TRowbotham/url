@@ -203,6 +203,9 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
   <tr>
    <td><dfn id=ipv6-too-many-pieces>ipv6-too-many-pieces</dfn>
    <td>This error occurs when an IPv6 address contains more than 8 pieces.
+  <tr>
+   <td><dfn id=ipv6-multiple-compression>ipv6-multiple-compression</dfn>
+   <td>This error occurs when an IPv6 address is compressed in more than one spot.
 </table>
 
 <h3 id=parsers>Parsers</h3>
@@ -869,7 +872,8 @@ then runs these steps:
     <p>If <a>c</a> is U+003A (:), then:
 
     <ol>
-     <li><p>If <var>compress</var> is non-null, <a>validation error</a>, return failure.
+     <li><p>If <var>compress</var> is non-null, <a>ipv6-multiple-compression</a>
+     <a>validation error</a>, return failure.
 
      <li>Increase <var>pointer</var> and <var>pieceIndex</var> by 1, set <var>compress</var> to
      <var>pieceIndex</var>, and then <a for=iteration>continue</a>.
