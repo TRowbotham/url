@@ -244,6 +244,10 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
    <td><dfn id=ipv4-in-ipv6-octet-out-of-range>ipv4-in-ipv6-octet-out-of-range</dfn>
    <td>This error occurs when an IPv4 address contained within an IPv6 address contains an octet
    that exceeds 255.
+  <tr>
+   <td><dfn id=ipv4-in-ipv6-too-few-octets>ipv4-in-ipv6-too-few-octets</dfn>
+   <td>This error occurs when an IPv4 address contained within an IPv6 address does not contain
+   exactly 4 octets.
 </table>
 
 <h3 id=parsers>Parsers</h3>
@@ -986,7 +990,8 @@ then runs these steps:
        <li><p>If <var>numbersSeen</var> is 2 or 4, then increase <var>pieceIndex</var> by 1.
       </ol>
 
-     <li><p>If <var>numbersSeen</var> is not 4, <a>validation error</a>, return failure.
+     <li><p>If <var>numbersSeen</var> is not 4, <a>ipv4-in-ipv6-too-few-octets</a>
+     <a>validation error</a>, return failure.
 
      <li><p><a for=iteration>Break</a>.
     </ol>
