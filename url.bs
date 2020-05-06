@@ -217,6 +217,10 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
   <tr>
    <td><dfn id=ipv6-unexpected-eof>ipv6-unexpected-eof</dfn>
    <td>This error occurs when an IPv6 address unexpectedly ends.
+  <tr>
+   <td><dfn id=ipv6-unexpected-delimiter>ipv6-unexpected-delimiter</dfn>
+   <td>This error occurs when an IPv6 address contains a code point that is not an
+   <a>ASCII hex digit</a> and not a U+003A (:) code point.
 </table>
 
 <h3 id=parsers>Parsers</h3>
@@ -972,8 +976,8 @@ then runs these steps:
      <a>validation error</a>, return failure.
     </ol>
 
-   <li><p>Otherwise, if <a>c</a> is not the <a>EOF code point</a>, <a>validation error</a>, return
-   failure.
+   <li><p>Otherwise, if <a>c</a> is not the <a>EOF code point</a>, <a>ipv6-unexpected-delimiter</a>
+   <a>validation error</a>, return failure.
 
    <li><p>Set <var>address</var>[<var>pieceIndex</var>] to <var>value</var>.
 
