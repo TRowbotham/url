@@ -100,6 +100,10 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
    <td><dfn id=unexpected-ascii-tab-or-newline>unexpected-ascii-tab-or-newline</dfn>
    <td>This error occurs when the input to the URL parser contains <a>ASCII tab or newline</a> code
    points. The URL parser subsequently strips any matching code points.
+  <tr>
+   <td><dfn id=invalid-scheme-start-code-point>invalid-scheme-start-code-point</dfn>
+   <td>This error occurs when the first code point of a URL's scheme is not an <a>ASCII alpha</a>
+   code point.
 </table>
 
 <h3 id=parsers>Parsers</h3>
@@ -1647,7 +1651,7 @@ string <var>input</var>, optionally with a <a>base URL</a> <var>base</var>, opti
      <a>no scheme state</a> and decrease <var>pointer</var> by 1.
 
      <li>
-      <p>Otherwise, <a>validation error</a>, return failure.
+      <p>Otherwise, <a>invalid-scheme-start-code-point</a> <a>validation error</a>, return failure.
 
       <p class=note>This indication of failure is used exclusively by the {{Location}} object's
       {{Location/protocol}} setter.
