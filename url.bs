@@ -152,6 +152,9 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
   <tr>
    <td><dfn id=port-out-of-range>port-out-of-range</dfn>
    <td>This error occurs when the <a>port</a> is a valid number, but exceeds 65,535.
+  <tr>
+   <td><dfn id=invalid-port>invalid-port</dfn>
+   <td>This error occurs when a non-integer value is found when parsing the <a>port</a>.
 </table>
 
 <h3 id=parsers>Parsers</h3>
@@ -2102,7 +2105,7 @@ string <var>input</var>, optionally with a <a>base URL</a> <var>base</var>, opti
        <li><p>Set <var>state</var> to <a>path start state</a> and decrease <var>pointer</var> by 1.
       </ol>
 
-     <li><p>Otherwise, <a>validation error</a>, return failure.
+     <li><p>Otherwise, <a>invalid-port</a> <a>validation error</a>, return failure.
     </ol>
 
    <dt><dfn>file state</dfn>
