@@ -167,6 +167,10 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
    <td><dfn id=unexpected-host-file-scheme>unexpected-host-file-scheme</dfn>
    <td>This error occurs when the URL's <a>scheme</a> is changed to the "<code>file</code>"
    <a>scheme</a> and the existing URL has a <a for=url>host</a>.
+  <tr>
+   <td><dfn id=unexpected-empty-path>unexpected-empty-path</dfn>
+   <td>This error occurs when a URL with a "<code>file</code>" <a>scheme</a> contains an empty
+   <a>path</a>.
 </table>
 
 <h3 id=parsers>Parsers</h3>
@@ -2370,8 +2374,9 @@ string <var>input</var>, optionally with a <a>base URL</a> <var>base</var>, opti
        <li><p>If <var>url</var>'s <a for=url>scheme</a> is "<code>file</code>" and <a>c</a> is the
        <a>EOF code point</a>, U+003F (?), or U+0023 (#), then while <var>url</var>'s
        <a for=url>path</a>'s <a for=list>size</a> is greater than 1 and <var>url</var>'s
-       <a for=url>path</a>[0] is the empty string, <a>validation error</a>, <a for=list>remove</a>
-       the first <a for=list>item</a> from <var>url</var>'s <a for=url>path</a>.
+       <a for=url>path</a>[0] is the empty string, <a>unexpected-empty-path</a>
+       <a>validation error</a>, <a for=list>remove</a> the first <a for=list>item</a> from
+       <var>url</var>'s <a for=url>path</a>.
 
        <li><p>If <a>c</a> is U+003F (?), then set <var>url</var>'s <a for=url>query</a> to the empty
        string and <var>state</var> to <a>query state</a>.
