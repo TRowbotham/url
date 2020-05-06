@@ -171,6 +171,10 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
    <td><dfn id=unexpected-empty-path>unexpected-empty-path</dfn>
    <td>This error occurs when a URL with a "<code>file</code>" <a>scheme</a> contains an empty
    <a>path</a>.
+  <tr>
+   <td><dfn id=invalid-url-code-point>invalid-url-code-point</dfn>
+   <td>This error occurs when a code point that is not a <a>url code point</a> or U+0025 (%) in the
+   URL's <a>path</a>, <a>query</a>, or <a for=url>fragment</a>.
 </table>
 
 <h3 id=parsers>Parsers</h3>
@@ -2390,7 +2394,7 @@ string <var>input</var>, optionally with a <a>base URL</a> <var>base</var>, opti
 
       <ol>
        <li><p>If <a>c</a> is not a <a>URL code point</a> and not U+0025 (%),
-       <a>validation error</a>.
+       <a>invalid-url-code-point</a> <a>validation error</a>.
 
        <li><p>If <a>c</a> is U+0025 (%) and <a>remaining</a> does not start with two
        <a>ASCII hex digits</a>, <a>validation error</a>.
@@ -2414,7 +2418,7 @@ string <var>input</var>, optionally with a <a>base URL</a> <var>base</var>, opti
 
       <ol>
        <li><p>If <a>c</a> is not the <a>EOF code point</a>, not a <a>URL code point</a>, and not
-       U+0025 (%), <a>validation error</a>.
+       U+0025 (%), <a>invalid-url-code-point</a> <a>validation error</a>.
 
        <li><p>If <a>c</a> is U+0025 (%) and <a>remaining</a> does not start with two
        <a>ASCII hex digits</a>, <a>validation error</a>.
@@ -2449,7 +2453,7 @@ string <var>input</var>, optionally with a <a>base URL</a> <var>base</var>, opti
 
       <ol>
        <li><p>If <a>c</a> is not a <a>URL code point</a> and not U+0025 (%),
-       <a>validation error</a>.
+       <a>invalid-url-code-point</a> <a>validation error</a>.
 
        <li><p>If <a>c</a> is U+0025 (%) and <a>remaining</a> does not start with two
        <a>ASCII hex digits</a>, <a>validation error</a>.
@@ -2505,7 +2509,7 @@ string <var>input</var>, optionally with a <a>base URL</a> <var>base</var>, opti
 
       <ol>
        <li><p>If <a>c</a> is not a <a>URL code point</a> and not U+0025 (%),
-       <a>validation error</a>.
+       <a>invalid-url-code-point</a> <a>validation error</a>.
 
        <li><p>If <a>c</a> is U+0025 (%) and <a>remaining</a> does not start with two
        <a>ASCII hex digits</a>, <a>validation error</a>.
