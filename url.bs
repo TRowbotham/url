@@ -149,6 +149,9 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
    <td>This error occurs when trying to set the host portion of a URL is set to the empty string
    when the URL <a>includes credentials</a> or a <a>port</a> and the <a>basic URL parser</a>'s
    state is overridden. (e.g. When setting {{URL}}'s {{URL/host}} attribute to an empty string.)
+  <tr>
+   <td><dfn id=port-out-of-range>port-out-of-range</dfn>
+   <td>This error occurs when the <a>port</a> is a valid number, but exceeds 65,535.
 </table>
 
 <h3 id=parsers>Parsers</h3>
@@ -2085,7 +2088,7 @@ string <var>input</var>, optionally with a <a>base URL</a> <var>base</var>, opti
          0 through 9.
 
          <li><p>If <var>port</var> is greater than 2<sup>16</sup>&nbsp;&minus;&nbsp;1,
-         <a>validation error</a>, return failure.
+         <a>port-out-of-range</a> <a>validation error</a>, return failure.
 
          <li><p>Set <var>url</var>'s <a for=url>port</a> to null, if <var>port</var> is
          <var>url</var>'s <a for=url>scheme</a>'s <a>default port</a>, and to
