@@ -240,6 +240,10 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
    <td><dfn id=ipv4-in-ipv6-invalid-first-octet>ipv4-in-ipv6-invalid-first-octet</dfn>
    <td>This error occurs when the first octet of an IPv4 address that is contained within an IPv6
    address is 0.
+  <tr>
+   <td><dfn id=ipv4-in-ipv6-octet-out-of-range>ipv4-in-ipv6-octet-out-of-range</dfn>
+   <td>This error occurs when an IPv4 address contained within an IPv6 address contains an octet
+   that exceeds 255.
 </table>
 
 <h3 id=parsers>Parsers</h3>
@@ -968,8 +972,8 @@ then runs these steps:
           <p>Otherwise, set <var>ipv4Piece</var> to <var>ipv4Piece</var> &times; 10 +
           <var>number</var>.
 
-         <li><p>If <var>ipv4Piece</var> is greater than 255, <a>validation error</a>, return
-         failure.
+         <li><p>If <var>ipv4Piece</var> is greater than 255, <a>ipv4-in-ipv6-octet-out-of-range</a>
+         <a>validation error</a>, return failure.
 
          <li><p>Increase <var>pointer</var> by 1.
         </ol>
