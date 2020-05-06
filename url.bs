@@ -102,20 +102,20 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
    points. The URL parser subsequently strips any matching code points.
   <tr>
    <td><dfn>invalid-scheme-start-code-point</dfn>
-   <td>This error occurs when the first code point of a URL's scheme is not an <a>ASCII alpha</a>
-   code point.
+   <td>This error occurs when the first code point of a URL's <a>scheme</a> is not an
+   <a>ASCII alpha</a> code point.
   <tr>
    <td><dfn>file-scheme-missing-following-solidus</dfn>
-   <td>This error occurs when the URL parser encounters a URL with a <code>file</code>
-   <a for=url>scheme</a>, but it is not followed by two "<code>//</code>" U+002F (/) code points.
+   <td>This error occurs when the URL parser encounters a URL with a "<code>file</code>"
+   <a>scheme</a>, but it is not followed by two "<code>//</code>" U+002F (/) code points.
   <tr>
    <td><dfn>invalid-scheme</dfn>
-   <td>This error occurs when the <a for=url>scheme</a> contains a code point that is not an
+   <td>This error occurs when the <a>scheme</a> contains a code point that is not an
    <a>ASCII alphanumeric</a>, U+002B (+), U+002D (-), or U+002E (.) code point, or is not followed
    by a U+00A3 (:) code point.
   <tr>
    <td><dfn>missing-scheme-non-relative-url</dfn>
-   <td>This error occurs when no <a for=url>scheme</a> is present and either no <a>base URL</a>
+   <td>This error occurs when no <a>scheme</a> is present and either no <a>base URL</a>
    was provided or the <a>base URL</a> cannot be used as a <a>base URL</a>.
   <tr>
    <td><dfn>relative-url-missing-beginning-solidus</dfn>
@@ -146,9 +146,9 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
    <a for=url>host</a>.
   <tr>
    <td><dfn>invalid-host</dfn>
-   <td>This error occurs when trying to set the host portion of a URL is set to the empty string
-   when the URL <a>includes credentials</a> or a <a>port</a> and the <a>basic URL parser</a>'s
-   state is overridden. (e.g. When setting {{URL}}'s {{URL/host}} attribute to an empty string.)
+   <td>This error occurs when the host portion of a URL is set to the empty string when the URL
+   <a>includes credentials</a> or a <a>port</a> and the <a>basic URL parser</a>'s state is
+   overridden. (e.g. When setting {{URL}}'s {{URL/host}} attribute to an empty string.)
   <tr>
    <td><dfn>port-out-of-range</dfn>
    <td>This error occurs when the <a>port</a> is a valid number, but exceeds 65,535.
