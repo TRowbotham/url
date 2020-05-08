@@ -226,7 +226,7 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
    <td>This error occurs when an uncompressed IPv6 address contains fewer than 8 peices.
   <tr>
    <td><dfn>opaque-host-forbidden-code-point</dfn>
-   <td>This error occurs when a <a>opaque host</a> contains a <a>forbidden host code point</a>
+   <td>This error occurs when an <a>opaque host</a> contains a <a>forbidden host code point</a>
    minus the U+0025 (%) code point.
   <tr>
    <td><dfn>ipv4-in-ipv6-too-many-octets</dfn>
