@@ -89,7 +89,7 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
  <thead>
   <tr>
    <th>Error Code
-   <th>Error Message
+   <th>Error Description
    <th>Fatal
  <tbody>
   <tr>
