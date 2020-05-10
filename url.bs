@@ -90,164 +90,206 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
   <tr>
    <th>Error Code
    <th>Error Message
+   <th>Fatal
  <tbody>
   <tr>
    <td><dfn>unexpected-c0-control-or-space</dfn>
    <td>This error occurs when the input to the URL parser contains leading or trailing
    <a>C0 control or space</a> code points. The URL parser subsequently strips any matching code
    points.
+   <td>
   <tr>
    <td><dfn>unexpected-ascii-tab-or-newline</dfn>
    <td>This error occurs when the input to the URL parser contains <a>ASCII tab or newline</a> code
    points. The URL parser subsequently strips any matching code points.
+   <td>
   <tr>
    <td><dfn>invalid-scheme-start-code-point</dfn>
    <td>This error occurs when the first code point of a URL's <a>scheme</a> is not an
    <a>ASCII alpha</a> code point.
+   <td>✅
   <tr>
    <td><dfn>file-scheme-missing-following-solidus</dfn>
    <td>This error occurs when the URL parser encounters a URL with a "<code>file</code>"
    <a>scheme</a>, but it is not followed by two "<code>//</code>" U+002F (/) code points.
+   <td>
   <tr>
    <td><dfn>invalid-scheme</dfn>
    <td>This error occurs when the <a>scheme</a> contains a code point that is not an
    <a>ASCII alphanumeric</a>, U+002B (+), U+002D (-), or U+002E (.) code point, or is not followed
    by a U+00A3 (:) code point.
+   <td>✅
   <tr>
    <td><dfn>missing-scheme-non-relative-url</dfn>
    <td>This error occurs when no <a>scheme</a> is present and either no <a>base URL</a>
    was provided or the <a>base URL</a> cannot be used as a <a>base URL</a>.
+   <td>✅
   <tr>
    <td><dfn>relative-url-missing-beginning-solidus</dfn>
    <td>This error occurs when a <a>relative-URL String</a> is given that does not begin with a
    U+002F (/) code point.
+   <td>
   <tr>
    <td><dfn>wrong-solidus-special-scheme</dfn>
    <td>This error occurs when a URL with a <a>special scheme</a> uses the U+005C (\) reverse
    solidus code point instead of the U+002F (/) code point.
+   <td>
   <tr>
    <td><dfn>missing-solidus-before-authority</dfn>
    <td>This error occurs if the URL <a>includes credentials</a> and they are not preceeded by
    two "<code>//</code>" U+002F (/) code points.
+   <td>
   <tr>
    <td><dfn>unexpected-@-code-point</dfn>
    <td>This error occurs when the URL <a>includes credentials</a>, as the authority porition of
    a URL is considered invalid.
+   <td>
   <tr>
    <td><dfn>missing-credentials</dfn>
    <td>This error occurs when an U+0040 (@) code point is found, but the URL does not
    <a>include credentials</a>.
+   <td>✅
   <tr>
    <td><dfn>unexpected-port-without-host</dfn>
    <td>This error occurs when the URL contains a <a>port</a>, but no <a for=url>host</a>.
+   <td>✅
   <tr>
    <td><dfn>empty-host-special-scheme</dfn>
    <td>This error occurs when a URL with a <a>special scheme</a> does not contain a
    <a for=url>host</a>.
+   <td>✅
   <tr>
    <td><dfn>invalid-host</dfn>
    <td>This error occurs when the host portion of a URL is set to the empty string when the URL
    <a>includes credentials</a> or a <a>port</a> and the <a>basic URL parser</a>'s state is
    overridden. (e.g. When setting {{URL}}'s {{URL/host}} attribute to an empty string.)
+   <td>
   <tr>
    <td><dfn>port-out-of-range</dfn>
    <td>This error occurs when the <a>port</a> is a valid number, but exceeds 65,535.
+   <td>✅
   <tr>
    <td><dfn>invalid-port</dfn>
    <td>This error occurs when a non-integer value is found when parsing the <a>port</a>.
+   <td>✅
   <tr>
    <td><dfn>unexpected-windows-drive-letter</dfn>
    <td>This error occurs when a <a>relative-URL string</a>
    <a>starts with a Windows drive letter</a> and the <a>base URL</a>'s <a>scheme</a> is
    "<code>file</code>".
+   <td>
   <tr>
    <td><dfn>unexpected-windows-drive-letter-host</dfn>
    <td>???
+   <td>
   <tr>
    <td><dfn>unexpected-host-file-scheme</dfn>
    <td>This error occurs when the URL's <a>scheme</a> is changed to the "<code>file</code>"
    <a>scheme</a> and the existing URL has a <a for=url>host</a>.
+   <td>
   <tr>
    <td><dfn>unexpected-empty-path</dfn>
    <td>This error occurs when a URL with a "<code>file</code>" <a>scheme</a> contains an empty
    <a>path</a>.
+   <td>
   <tr>
    <td><dfn>invalid-url-code-point</dfn>
    <td>This error occurs when a code point that is not a <a>url code point</a> or U+0025 (%) in the
    URL's <a>path</a>, <a>query</a>, or <a for=url>fragment</a>.
+   <td>
   <tr>
    <td><dfn>unescaped-percent-sign</dfn>
    <td>This error occurs when a U+0025 (%) code point is found that is not followed by two
    <a>ASCII hex digits</a>, representing a <a>percent-encoded byte</a>, in the URL's <a>path</a>,
    <a>query</a>, or <a for=url>fragment</a>.
+   <td>
   <tr>
    <td><dfn>unclosed-ipv6-address</dfn>
    <td>This error occurs when an IPv6 address is missing the closing U+005D (]) code point.
+   <td>✅
   <tr>
    <td><dfn>ascii-idn-failure</dfn>
    <td>This error occurs when transforming the domain to ASCII using IDN records an error.
+   <td>✅
   <tr>
    <td><dfn>host-forbidden-code-point</dfn>
    <td>This error occurs when the host contains a <a>forbidden host code point</a>.
+   <td>✅
   <tr>
    <td><dfn>unexpected-non-decimal-number</dfn>
    <td>This occurs when the IPv4 address contains numbers expressed using hexadecimal or octal
    digits.
+   <td>
   <tr>
    <td><dfn>ipv4-octet-out-of-range</dfn>
    <td>This error occurs when an IPv4 octet exceeds 255.
+   <td>✅
   <tr>
    <td><dfn>invalid-compressed-ipv6-address</dfn>
    <td>This error occurs when an IPv6 address begins with improper compression.
    (e.g. [:1] instead of [::1])
+   <td>✅
   <tr>
    <td><dfn>ipv6-too-many-pieces</dfn>
    <td>This error occurs when an IPv6 address contains more than 8 pieces.
+   <td>✅
   <tr>
    <td><dfn>ipv6-multiple-compression</dfn>
    <td>This error occurs when an IPv6 address is compressed in more than one spot.
+   <td>✅
   <tr>
    <td><dfn>ipv4-in-ipv6-empty-octet</dfn>
    <td>This error occurs when an IPv6 address that contains an IPv4 address has an empty octet in
    the IPv4 address.
+   <td>✅
   <tr>
    <td><dfn>ipv4-in-ipv6-too-many-pieces</dfn>
    <td>This error occurs when an IPv6 address contains an IPv4 address and the IPv6 address has
    more than 6 pieces.
+   <td>✅
   <tr>
    <td><dfn>ipv6-unexpected-eof</dfn>
    <td>This error occurs when an IPv6 address unexpectedly ends.
+   <td>✅
   <tr>
    <td><dfn>ipv6-unexpected-delimiter</dfn>
    <td>This error occurs when an IPv6 address contains a code point that is not an
    <a>ASCII hex digit</a> and not a U+003A (:) code point.
+   <td>✅
   <tr>
    <td><dfn>ipv6-too-few-pieces</dfn>
    <td>This error occurs when an uncompressed IPv6 address contains fewer than 8 peices.
+   <td>✅
   <tr>
    <td><dfn>opaque-host-forbidden-code-point</dfn>
    <td>This error occurs when an <a>opaque host</a> contains a <a>forbidden host code point</a>
    minus the U+0025 (%) code point.
+   <td>✅
   <tr>
    <td><dfn>ipv4-in-ipv6-too-many-octets</dfn>
    <td>This error occurs when an IPv6 address contains an IPv4 address and the IPv4 address has
    more than 4 octets.
+   <td>✅
   <tr>
    <td><dfn>ipv4-in-ipv6-unexpected-code-point</dfn>
    <td>This error occurs when an IPv6 address contains an IPv4 address whose octets contains code
    points other than <a>ASCII digits</a> or is an empty string.
+   <td>✅
   <tr>
    <td><dfn>ipv4-in-ipv6-invalid-first-octet</dfn>
    <td>This error occurs when the first octet of an IPv4 address that is contained within an IPv6
    address is 0.
+   <td>✅
   <tr>
    <td><dfn>ipv4-in-ipv6-octet-out-of-range</dfn>
    <td>This error occurs when an IPv4 address contained within an IPv6 address contains an octet
    that exceeds 255.
+   <td>✅
   <tr>
    <td><dfn>ipv4-in-ipv6-too-few-octets</dfn>
    <td>This error occurs when an IPv4 address contained within an IPv6 address does not contain
    exactly 4 octets.
+   <td>✅
 </table>
 
 <h3 id=parsers>Parsers</h3>
