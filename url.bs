@@ -93,13 +93,13 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
    <th>Fatal
  <tbody>
   <tr>
-   <td><dfn>unexpected-c0-control-or-space</dfn>
+   <td><dfn>unexpected-C0-control-or-space</dfn>
    <td>This error occurs when the input to the URL parser contains leading or trailing
    <a>C0 control or space</a> code points. The URL parser subsequently strips any matching code
    points.
    <td>
   <tr>
-   <td><dfn>unexpected-ascii-tab-or-newline</dfn>
+   <td><dfn>unexpected-ASCII-tab-or-newline</dfn>
    <td>This error occurs when the input to the URL parser contains <a>ASCII tab or newline</a> code
    points. The URL parser subsequently strips any matching code points.
    <td>
@@ -120,12 +120,12 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
    by a U+00A3 (:) code point.
    <td>✅
   <tr>
-   <td><dfn>missing-scheme-non-relative-url</dfn>
+   <td><dfn>missing-scheme-non-relative-URL</dfn>
    <td>This error occurs when no <a>scheme</a> is present and either no <a>base URL</a>
    was provided or the <a>base URL</a> cannot be used as a <a>base URL</a>.
    <td>✅
   <tr>
-   <td><dfn>relative-url-missing-beginning-solidus</dfn>
+   <td><dfn>relative-URL-missing-beginning-solidus</dfn>
    <td>This error occurs when a <a>relative-URL String</a> is given that does not begin with a
    U+002F (/) code point.
    <td>
@@ -140,7 +140,7 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
    two "<code>//</code>" U+002F (/) code points.
    <td>
   <tr>
-   <td><dfn>unexpected-@-code-point</dfn>
+   <td><dfn>unexpected-commercial-at-code-point</dfn>
    <td>This error occurs when the URL <a>includes credentials</a>, as the authority porition of
    a URL is considered invalid.
    <td>
@@ -193,8 +193,8 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
    <a>path</a>.
    <td>
   <tr>
-   <td><dfn>invalid-url-code-point</dfn>
-   <td>This error occurs when a code point that is not a <a>url code point</a> or U+0025 (%) in the
+   <td><dfn>invalid-URL-code-point</dfn>
+   <td>This error occurs when a code point that is not a <a>URL code point</a> or U+0025 (%) in the
    URL's <a>path</a>, <a>query</a>, or <a for=url>fragment</a>.
    <td>
   <tr>
@@ -204,11 +204,11 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
    <a>query</a>, or <a for=url>fragment</a>.
    <td>
   <tr>
-   <td><dfn>unclosed-ipv6-address</dfn>
+   <td><dfn>unclosed-IPv6-address</dfn>
    <td>This error occurs when an IPv6 address is missing the closing U+005D (]) code point.
    <td>✅
   <tr>
-   <td><dfn>ascii-idn-failure</dfn>
+   <td><dfn>domain-to-ASCII-failure</dfn>
    <td>This error occurs when transforming the domain to ASCII using IDN records an error.
    <td>✅
   <tr>
@@ -221,43 +221,43 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
    digits.
    <td>
   <tr>
-   <td><dfn>ipv4-octet-out-of-range</dfn>
-   <td>This error occurs when an IPv4 octet exceeds 255.
+   <td><dfn>IPv4-part-out-of-range</dfn>
+   <td>This error occurs when an IPv4 part exceeds 255.
    <td>✅
   <tr>
-   <td><dfn>invalid-compressed-ipv6-address</dfn>
+   <td><dfn>invalid-compressed-IPv6-address</dfn>
    <td>This error occurs when an IPv6 address begins with improper compression.
    (e.g. [:1] instead of [::1])
    <td>✅
   <tr>
-   <td><dfn>ipv6-too-many-pieces</dfn>
+   <td><dfn>IPv6-too-many-pieces</dfn>
    <td>This error occurs when an IPv6 address contains more than 8 pieces.
    <td>✅
   <tr>
-   <td><dfn>ipv6-multiple-compression</dfn>
+   <td><dfn>IPv6-multiple-compression</dfn>
    <td>This error occurs when an IPv6 address is compressed in more than one spot.
    <td>✅
   <tr>
-   <td><dfn>ipv4-in-ipv6-empty-octet</dfn>
-   <td>This error occurs when an IPv6 address that contains an IPv4 address has an empty octet in
+   <td><dfn>IPv4-in-IPv6-empty-part</dfn>
+   <td>This error occurs when an IPv6 address that contains an IPv4 address has an empty part in
    the IPv4 address.
    <td>✅
   <tr>
-   <td><dfn>ipv4-in-ipv6-too-many-pieces</dfn>
+   <td><dfn>IPv4-in-IPv6-too-many-pieces</dfn>
    <td>This error occurs when an IPv6 address contains an IPv4 address and the IPv6 address has
    more than 6 pieces.
    <td>✅
   <tr>
-   <td><dfn>ipv6-unexpected-eof</dfn>
+   <td><dfn>IPv6-unexpected-EOF</dfn>
    <td>This error occurs when an IPv6 address unexpectedly ends.
    <td>✅
   <tr>
-   <td><dfn>ipv6-unexpected-delimiter</dfn>
+   <td><dfn>IPv6-unexpected-delimiter</dfn>
    <td>This error occurs when an IPv6 address contains a code point that is not an
    <a>ASCII hex digit</a> and not a U+003A (:) code point.
    <td>✅
   <tr>
-   <td><dfn>ipv6-too-few-pieces</dfn>
+   <td><dfn>IPv6-too-few-pieces</dfn>
    <td>This error occurs when an uncompressed IPv6 address contains fewer than 8 peices.
    <td>✅
   <tr>
@@ -266,29 +266,29 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
    minus the U+0025 (%) code point.
    <td>✅
   <tr>
-   <td><dfn>ipv4-in-ipv6-too-many-octets</dfn>
+   <td><dfn>IPv4-in-IPv6-too-many-parts</dfn>
    <td>This error occurs when an IPv6 address contains an IPv4 address and the IPv4 address has
-   more than 4 octets.
+   more than 4 parts.
    <td>✅
   <tr>
-   <td><dfn>ipv4-in-ipv6-unexpected-code-point</dfn>
-   <td>This error occurs when an IPv6 address contains an IPv4 address whose octets contains code
+   <td><dfn>IPv4-in-IPv6-unexpected-code-point</dfn>
+   <td>This error occurs when an IPv6 address contains an IPv4 address whose parts contains code
    points other than <a>ASCII digits</a> or is an empty string.
    <td>✅
   <tr>
-   <td><dfn>ipv4-in-ipv6-invalid-first-octet</dfn>
-   <td>This error occurs when the first octet of an IPv4 address that is contained within an IPv6
+   <td><dfn>IPv4-in-IPv6-invalid-first-part</dfn>
+   <td>This error occurs when the first part of an IPv4 address that is contained within an IPv6
    address is 0.
    <td>✅
   <tr>
-   <td><dfn>ipv4-in-ipv6-octet-out-of-range</dfn>
-   <td>This error occurs when an IPv4 address contained within an IPv6 address contains an octet
+   <td><dfn>IPv4-in-IPv6-part-out-of-range</dfn>
+   <td>This error occurs when an IPv4 address contained within an IPv6 address contains an part
    that exceeds 255.
    <td>✅
   <tr>
-   <td><dfn>ipv4-in-ipv6-too-few-octets</dfn>
+   <td><dfn>IPv4-in-IPv6-too-few-parts</dfn>
    <td>This error occurs when an IPv4 address contained within an IPv6 address does not contain
-   exactly 4 octets.
+   exactly 4 parts.
    <td>✅
 </table>
 
@@ -658,7 +658,7 @@ decisions made, i.e. whether to use the <a>same site</a> or <a>schemelessly same
 
  <li><p>If <var>result</var> is a failure value, return failure.
 
- <li><p>If <var>result</var> is the empty string, <a>validation error</a>, return failure.
+ <li><p>If <var>result</var> is the empty string, return failure.
 
  <li><p>Return <var>result</var>.
 </ol>
@@ -743,7 +743,7 @@ string <var>input</var> with an optional boolean <var>isNotSpecial</var>, and th
   <p>If <var>input</var> starts with U+005B ([), then:
 
   <ol>
-   <li><p>If <var>input</var> does not end with U+005D (]), <a>unclosed-ipv6-address</a>
+   <li><p>If <var>input</var> does not end with U+005D (]), <a>unclosed-IPv6-address</a>
    <a>validation error</a>, return failure.
 
    <li><p>Return the result of <a lt="IPv6 parser">IPv6 parsing</a> <var>input</var> with its
@@ -766,7 +766,7 @@ string <var>input</var> with an optional boolean <var>isNotSpecial</var>, and th
  <li><p>Let <var>asciiDomain</var> be the result of running
  <a>domain to ASCII</a> on <var>domain</var>.
 
- <li><p>If <var>asciiDomain</var> is failure, <a>ascii-idn-failure</a>
+ <li><p>If <var>asciiDomain</var> is failure, <a>domain-to-ASCII-failure</a>
  <a>validation error</a>, return failure.
 
  <li><p>If <var>asciiDomain</var> contains a <a>forbidden host code point</a>,
@@ -841,7 +841,7 @@ these steps:
   treated as an IPv4 address (or failure). And therefore error reporting resumes.
  </li>
 
- <li><p>If any item in <var>numbers</var> is greater than 255, <a>ipv4-octet-out-of-range</a>
+ <li><p>If any item in <var>numbers</var> is greater than 255, <a>IPv4-part-out-of-range</a>
  <a>validation error</a>.
 
  <li><p>If any but the last <a for=list>item</a> in <var>numbers</var> is greater than 255, then
@@ -849,7 +849,7 @@ these steps:
 
  <li><p>If the last <a for=list>item</a> in <var>numbers</var> is greater than or equal to
  256<sup>(5 &minus; <var>numbers</var>'s <a for=list>size</a>)</sup>,
- <a>ipv4-octet-out-of-range</a> <a>validation error</a>, return failure.
+ <a>IPv4-part-out-of-range</a> <a>validation error</a>, return failure.
 
  <li><p>Let <var>ipv4</var> be the last <a for=list>item</a> in <var>numbers</var>.
 
@@ -937,7 +937,7 @@ then runs these steps:
 
   <ol>
    <li><p>If <a>remaining</a> does not start with U+003A (:),
-   <a>invalid-compressed-ipv6-address</a> <a>validation error</a>, return failure.
+   <a>invalid-compressed-IPv6-address</a> <a>validation error</a>, return failure.
 
    <li><p>Increase <var>pointer</var> by 2.
 
@@ -949,14 +949,14 @@ then runs these steps:
   <p>While <a>c</a> is not the <a>EOF code point</a>:
 
   <ol>
-   <li><p>If <var>pieceIndex</var> is 8, <a>ipv6-too-many-pieces</a>
+   <li><p>If <var>pieceIndex</var> is 8, <a>IPv6-too-many-pieces</a>
    <a>validation error</a>, return failure.
 
    <li>
     <p>If <a>c</a> is U+003A (:), then:
 
     <ol>
-     <li><p>If <var>compress</var> is non-null, <a>ipv6-multiple-compression</a>
+     <li><p>If <var>compress</var> is non-null, <a>IPv6-multiple-compression</a>
      <a>validation error</a>, return failure.
 
      <li>Increase <var>pointer</var> and <var>pieceIndex</var> by 1, set <var>compress</var> to
@@ -973,12 +973,12 @@ then runs these steps:
     <p>If <a>c</a> is U+002E (.), then:
 
     <ol>
-     <li><p>If <var>length</var> is 0, <a>ipv4-in-ipv6-empty-octet</a> <a>validation error</a>,
+     <li><p>If <var>length</var> is 0, <a>IPv4-in-IPv6-empty-part</a> <a>validation error</a>,
      return failure.
 
      <li><p>Decrease <var>pointer</var> by <var>length</var>.
 
-     <li><p>If <var>pieceIndex</var> is greater than 6, <a>ipv4-in-ipv6-too-many-pieces</a>
+     <li><p>If <var>pieceIndex</var> is greater than 6, <a>IPv4-in-IPv6-too-many-pieces</a>
      <a>validation error</a>, return failure.
 
      <li><p>Let <var>numbersSeen</var> be 0.
@@ -996,10 +996,10 @@ then runs these steps:
          <li><p>If <a>c</a> is a U+002E (.) and <var>numbersSeen</var> is less than 4, then increase
          <var>pointer</var> by 1.
 
-         <li>Otherwise, <a>ipv4-in-ipv6-too-many-octets</a> <a>validation error</a>, return failure.
+         <li>Otherwise, <a>IPv4-in-IPv6-too-many-parts</a> <a>validation error</a>, return failure.
         </ol>
 
-       <li><p>If <a>c</a> is not an <a>ASCII digit</a>, <a>ipv4-in-ipv6-unexpected-code-point</a>
+       <li><p>If <a>c</a> is not an <a>ASCII digit</a>, <a>IPv4-in-IPv6-unexpected-code-point</a>
        <a>validation error</a>, return failure.
        <!-- prevent the empty string -->
 
@@ -1012,13 +1012,13 @@ then runs these steps:
          <li>
           <p>If <var>ipv4Piece</var> is null, then set <var>ipv4Piece</var> to <var>number</var>.
 
-          <p>Otherwise, if <var>ipv4Piece</var> is 0, <a>ipv4-in-ipv6-invalid-first-octet</a>
+          <p>Otherwise, if <var>ipv4Piece</var> is 0, <a>IPv4-in-IPv6-invalid-first-part</a>
           <a>validation error</a>, return failure.
 
           <p>Otherwise, set <var>ipv4Piece</var> to <var>ipv4Piece</var> &times; 10 +
           <var>number</var>.
 
-         <li><p>If <var>ipv4Piece</var> is greater than 255, <a>ipv4-in-ipv6-octet-out-of-range</a>
+         <li><p>If <var>ipv4Piece</var> is greater than 255, <a>IPv4-in-IPv6-part-out-of-range</a>
          <a>validation error</a>, return failure.
 
          <li><p>Increase <var>pointer</var> by 1.
@@ -1032,7 +1032,7 @@ then runs these steps:
        <li><p>If <var>numbersSeen</var> is 2 or 4, then increase <var>pieceIndex</var> by 1.
       </ol>
 
-     <li><p>If <var>numbersSeen</var> is not 4, <a>ipv4-in-ipv6-too-few-octets</a>
+     <li><p>If <var>numbersSeen</var> is not 4, <a>IPv4-in-IPv6-too-few-parts</a>
      <a>validation error</a>, return failure.
 
      <li><p><a for=iteration>Break</a>.
@@ -1044,11 +1044,11 @@ then runs these steps:
     <ol>
      <li><p>Increase <var>pointer</var> by 1.
 
-     <li><p>If <a>c</a> is the <a>EOF code point</a>, <a>ipv6-unexpected-eof</a>
+     <li><p>If <a>c</a> is the <a>EOF code point</a>, <a>IPv6-unexpected-eof</a>
      <a>validation error</a>, return failure.
     </ol>
 
-   <li><p>Otherwise, if <a>c</a> is not the <a>EOF code point</a>, <a>ipv6-unexpected-delimiter</a>
+   <li><p>Otherwise, if <a>c</a> is not the <a>EOF code point</a>, <a>IPv6-unexpected-delimiter</a>
    <a>validation error</a>, return failure.
 
    <li><p>Set <var>address</var>[<var>pieceIndex</var>] to <var>value</var>.
@@ -1071,7 +1071,7 @@ then runs these steps:
   </ol>
 
  <li><p>Otherwise, if <var>compress</var> is null and <var>pieceIndex</var> is not 8,
- <a>ipv6-too-few-pieces</a> <a>validation error</a>, return failure.
+ <a>IPv6-too-few-pieces</a> <a>validation error</a>, return failure.
 
  <li><p>Return <var>address</var>.
 </ol>
@@ -2086,7 +2086,7 @@ string <var>input</var>, optionally with a <a>base URL</a> <var>base</var>, opti
       <p>If <a>c</a> is U+0040 (@), then:
 
       <ol>
-       <li><p><a>unexpected-@-code-point</a> <a>Validation error</a>.
+       <li><p><a>unexpected-commercial-at-code-point</a> <a>Validation error</a>.
 
        <li><p>If the <var>@ flag</var> is set, prepend "<code>%40</code>" to
        <var>buffer</var>.
