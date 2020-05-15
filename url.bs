@@ -201,16 +201,16 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
    <td>✅
   <tr>
    <td><dfn>unexpected-windows-drive-letter</dfn>
-   <td><p>This error occurs when a <a>relative-URL string</a>
-   <a>starts with a Windows drive letter</a> and the <a>base URL</a>'s <a>scheme</a> is
-   "<code>file</code>".
+   <td><p>The input is a <a>relative-URL string</a> that <a>starts with a Windows drive letter</a>
+   and the <a>base URL</a>'s <a>scheme</a> is "<code>file</code>".
     <div class=example id=example-unexpected-windows-drive-letter><pre><code class=lang-javascript>
      let url = new URL("/c:/path/to/file", "file:///c:/");
     </code></pre>
    <td>
   <tr>
    <td><dfn>unexpected-windows-drive-letter-host</dfn>
-   <td>???
+   <td><p>The file URL's host is a windows drive letter.
+   <p class=example id=example-unexpected-windows-drive-letter-host>"file://c:"
    <td>
   <tr>
    <td><dfn>unexpected-host-file-scheme</dfn>
@@ -231,7 +231,7 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
    <td><dfn>invalid-URL-code-point</dfn>
    <td><p>A code point that is not a <a>URL code point</a> or U+0025 (%) is found in the URL's
    <a>path</a>, <a>query</a>, or <a for=url>fragment</a>.
-   <p class=example id=example-invalid-URL-code-point>"https://example.org/>"
+   <p class=example id=example-invalid-URL-code-point>"https://example.org/&gt;"
    <td>
   <tr>
    <td><dfn>unescaped-percent-sign</dfn>
