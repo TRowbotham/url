@@ -90,268 +90,303 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
   <tr>
    <th>Error Code
    <th>Error Description
-   <th>Fatal
+   <th>Failure
  <tbody>
   <tr>
    <td><dfn>unexpected-c0-control-or-space</dfn>
-   <td><p>The input to the URL parser contains leading or trailing <a>C0 control or space</a> code
-   points. The URL parser subsequently strips any matching code points.
-   <p class=example id=example-unexpected-c0-control-or-space>"   https://example.org   "
    <td>
+    <p>The input to the URL parser contains a leading or trailing <a>C0 control or space</a>. The
+    URL parser subsequently strips any matching code points.
+    <p class=example id=example-unexpected-c0-control-or-space>"<code> https://example.org </code>"
+   <td>❌
   <tr>
    <td><dfn>unexpected-ascii-tab-or-newline</dfn>
-   <td><p>The input to the URL parser contains <a>ASCII tab or newline</a> code points. The URL
-   parser subsequently strips any matching code points.
-   <p class=example id=example-unexpected-ascii-tab-or-newline>"ht\ttps://example.org"
    <td>
+    <p>The input to the URL parser contains <a>ASCII tab or newlines</a>. The URL parser
+    subsequently strips any matching code points.
+    <p class=example id=example-unexpected-ascii-tab-or-newline>"<code>ht<br>tps://example.org</code>"
+   <td>❌
   <tr>
-   <td><dfn>invalid-scheme-start-code-point</dfn>
-   <td><p>The first code point of a URL's <a>scheme</a> is not an <a>ASCII alpha</a> code point.
-   <p class=example id=example-invalid-scheme-start-code-point>"3ttps://example.org"
+   <td><dfn>invalid-scheme-start</dfn>
+   <td><p>The first code point of a URL's <a>scheme</a> is not an <a>ASCII alpha</a>.
+   <p class=example id=example-invalid-scheme-start>"3ttps://example.org"
    <td>✅
   <tr>
    <td><dfn>file-scheme-missing-following-solidus</dfn>
-   <td><p>The URL parser encounters a URL with a "<code>file</code>" <a>scheme</a>, but it is not
-   followed by two "<code>//</code>" U+002F (/) code points.
-   <p class=example id=example-file-scheme-missing-following-solidus>"file:c:/my-secret-folder"
    <td>
+    <p>The URL parser encounters a URL with a "<code>file</code>" <a>scheme</a>, but it is not
+    followed by "<code>//</code>".
+    <p class=example id=example-file-scheme-missing-following-solidus>"<code>file:c:/my-secret-folder</code>"
+   <td>❌
   <tr>
    <td><dfn>invalid-scheme</dfn>
-   <td><p>The URL's <a>scheme</a> contains a code point that is not an <a>ASCII alphanumeric</a>,
-   U+002B (+), U+002D (-), or U+002E (.) code point, or is not followed by a U+00A3 (:) code point.
-   <p class=example id=example-invalid-scheme>"^_^://example.org"<br>"https//example.org"
+   <td>
+    <p>The URL's <a>scheme</a> contains a code point that is not an <a>ASCII alphanumeric</a>,
+    U+002B (+), U+002D (-), or U+002E (.), or is not followed by U+00A3 (:).
+    <p class=example id=example-invalid-scheme>"<code>^_^://example.org</code>" and
+    "<code>https//example.org</code>"
    <td>✅
   <tr>
    <td><dfn>missing-scheme-non-relative-url</dfn>
-   <td><p>The input is missing a <a>scheme</a>, because it does not begin with an
-   <a>ASCII alpha</a>, and either no <a>base URL</a> was provided or the <a>base URL</a> cannot be
-   used as a <a>base URL</a> because its <a>cannot-be-a-base-URL flag</a> is set.
-   <div class=example id=example-missing-scheme-non-relative-url>
-   <p>Input's <a>scheme</a> is missing and no <a>base URL</a> is given:
-   <pre><code class=lang-javascript>
-   let url = new URL("💩");
-   </code></pre>
-   Input's <a>scheme</a> is missing, but the <a>base URL</a>'s <a>cannot-be-a-base-URL flag</a> is
-   set.
-   <pre><code class=lang-javascript>
-   let url = new URL("💩", "mailto:user@example.org");
-   </code></pre>
+   <td>
+    <p>The input is missing a <a>scheme</a>, because it does not begin with an <a>ASCII alpha</a>,
+    and either no <a>base URL</a> was provided or the <a>base URL</a> cannot be used as a
+    <a>base URL</a> because its <a>cannot-be-a-base-URL flag</a> is set.
+    <div class=example id=example-missing-scheme-non-relative-url>
+     <p>Input's <a>scheme</a> is missing and no <a>base URL</a> is given:
+     <pre><code class=lang-javascript>
+let url = new URL("💩");</code></pre>
+     <p>Input's <a>scheme</a> is missing, but the <a>base URL</a>'s <a>cannot-be-a-base-URL flag</a>
+     is set.
+     <pre><code class=lang-javascript>
+let url = new URL("💩", "mailto:user@example.org");</code></pre>
+    </div>
    <td>✅
   <tr>
    <td><dfn>relative-url-missing-beginning-solidus</dfn>
-   <td><p>The input is a <a>relative-URL String</a> that does not begin with a U+002F (/) code
-   point.
-   <div class=example id=example-relative-url-missing-beginning-solidus>
-   <pre><code class="lang-javascript">
-   let url = new URL("foo.html", "https://example.org/");
-   </code></pre>
    <td>
+    <p>The input is a <a>relative-URL String</a> that does not begin with U+002F (/).
+    <pre class=example id=example-relative-url-missing-beginning-solidus><code class="lang-javascript">
+let url = new URL("foo.html", "https://example.org/");</code></pre>
+   <td>❌
   <tr>
    <td><dfn>wrong-solidus-special-scheme</dfn>
-   <td><p>The URL has a <a>special scheme</a> and it uses the U+005C (\) reverse solidus code point
-   instead of the U+002F (/) code point in its <a>path</a>.
-   <p class=example id=example-wrong-solidus-special-scheme>"https://example.org\path\to\file"
    <td>
+    <p>The URL has a <a>special scheme</a> and it uses U+005C (\) instead of U+002F (/) in its
+    <a for=url>path</a>.
+    <p class=example id=example-wrong-solidus-special-scheme>"<code>https://example.org\path\to\file</code>"
+   <td>❌
   <tr>
    <td><dfn>missing-solidus-before-authority</dfn>
-   <td><p>The URL <a>includes credentials</a> that are not preceded by two "<code>//</code>"
-   U+002F (/) code points.
-   <p class=example id=example-missing-solidus-before-authority>"https:user@example.org"
    <td>
+    <p>The URL <a>includes credentials</a> that are not preceded by "<code>//</code>".
+   <p class=example id=example-missing-solidus-before-authority>"<code>https:user@example.org</code>"
+   <td>❌
   <tr>
-   <td><dfn>unexpected-commercial-at-code-point</dfn>
-   <td><p>The URL <a>includes credentials</a>, however this is considered invalid.
-   <p class=example id=example-unexpected-commercial-at-code-point>"https://user@example.org"
+   <td><dfn>unexpected-commercial-at</dfn>
    <td>
+    <p>The URL <a>includes credentials</a>, however this is considered invalid.
+    <p class=example id=example-unexpected-commercial-at-code-point>"<code>https://user@example.org</code>"
+   <td>❌
   <tr>
    <td><dfn>missing-credentials</dfn>
-   <td><p>A U+0040 (@) code point is found between the URL's <a>scheme</a> and <a for=url>host</a>,
-   but the URL does not <a>include credentials</a>.
-   <p class=example id=example-missing-credentials>"https://@example.org"
+   <td>
+    <p>A U+0040 (@) is found between the URL's <a>scheme</a> and <a for=url>host</a>, but the URL
+    does not <a>include credentials</a>.
+    <p class=example id=example-missing-credentials>"<code>https://@example.org</code>"
    <td>✅
   <tr>
    <td><dfn>unexpected-port-without-host</dfn>
-   <td><p>The URL contains a <a>port</a>, but no <a for=url>host</a>.
-   <p class=example id=example-unexpected-port-without-host>"https://:443"
+   <td>
+    <p>The URL contains a <a>port</a>, but no <a for=url>host</a>.
+    <p class=example id=example-unexpected-port-without-host>"<code>https://:443</code>"
    <td>✅
   <tr>
    <td><dfn>empty-host-special-scheme</dfn>
-   <td>The URL has a <a>special scheme</a>, but does not contain a <a for=url>host</a>.
-   <p class=example id=example-empty-host-special-scheme>"https://#fragment"
+   <td>
+    <p>The URL has a <a>special scheme</a>, but does not contain a <a for=url>host</a>.
+    <p class=example id=example-empty-host-special-scheme>"<code>https://#fragment</code>"
    <td>✅
   <tr>
    <td><dfn>invalid-host</dfn>
-   <td><p>The <a for=url>host</a> portion of the URL is an empty string when it
-   <a>includes credentials</a> or a <a>port</a> and the <a>basic URL parser</a>'s state is
-   overridden.
-   <div class=example id=example-invalid-host><pre><code class=lang-javascript>
-    let url = new URL("https://example:9000");
-    url.hostname = "";
-   </code></pre>
    <td>
+    <p>The <a for=url>host</a> portion of the URL is an empty string when it
+    <a>includes credentials</a> or a <a>port</a> and the <a>basic URL parser</a>'s state is
+    overridden.
+    <pre class=example id=example-invalid-host><code class=lang-javascript>
+const url = new URL("https://example:9000");
+url.hostname = "";</code></pre>
+   <td>❌
   <tr>
    <td><dfn>port-out-of-range</dfn>
-   <td><p>The input's port is a <a>URL-port string</a>, but it exceeds 65,535.
-   <p class=example id=example-port-out-of-range>"https://example.org:70000"
+   <td>
+    <p>The input's port is a <a>URL-port string</a>, but it exceeds 65,535.
+    <p class=example id=example-port-out-of-range>"<code>https://example.org:70000</code>"
    <td>✅
   <tr>
    <td><dfn>invalid-port</dfn>
-   <td><p>The input's port is not a <a>URL-port string</a>.
-   <p class=example id=example-invalid-port>"https://example.org:7z"
+   <td>
+    <p>The input's port is not a <a>URL-port string</a>.
+    <p class=example id=example-invalid-port>"<code>https://example.org:7z</code>"
    <td>✅
   <tr>
    <td><dfn>unexpected-windows-drive-letter</dfn>
-   <td><p>The input is a <a>relative-URL string</a> that <a>starts with a Windows drive letter</a>
-   and the <a>base URL</a>'s <a>scheme</a> is "<code>file</code>".
-    <div class=example id=example-unexpected-windows-drive-letter><pre><code class=lang-javascript>
-     let url = new URL("/c:/path/to/file", "file:///c:/");
-    </code></pre>
    <td>
+    <p>The input is a <a>relative-URL string</a> that <a>starts with a Windows drive letter</a> and
+    the <a>base URL</a>'s <a>scheme</a> is "<code>file</code>".
+    <pre class=example id=example-unexpected-windows-drive-letter><code class=lang-javascript>
+let url = new URL("/c:/path/to/file", "file:///c:/");</code></pre>
+   <td>❌
   <tr>
    <td><dfn>unexpected-windows-drive-letter-host</dfn>
-   <td><p>The file URL's host is a windows drive letter.
-   <p class=example id=example-unexpected-windows-drive-letter-host>"file://c:"
    <td>
+    <p>The file URL's host is a Windows drive letter.
+    <p class=example id=example-unexpected-windows-drive-letter-host>"<code>file://c:</code>"
+   <td>❌
   <tr>
    <td><dfn>unexpected-host-file-scheme</dfn>
-   <td><p>The URL's <a>scheme</a> is changed to the "<code>file</code>" <a>scheme</a> and the
-   existing URL has a <a for=url>host</a>.
-   <div class=example id=example-unexpected-host-file-scheme><pre><code class=lang-javascript>
-    let url = new URL("https://example.org");
-    url.protocol = "file";
-   </code></pre>
    <td>
+    <p>The URL's <a>scheme</a> is changed to the "<code>file</code>" <a>scheme</a> and the existing
+    URL has a <a for=url>host</a>.
+    <pre class=example id=example-unexpected-host-file-scheme><code class=lang-javascript>
+const url = new URL("https://example.org");
+url.protocol = "file";</code></pre>
+   <td>❌
   <tr>
    <td><dfn>unexpected-empty-path</dfn>
-   <td><p>The URL's <a>scheme</a> is "<code>file</code>" and it contains an empty <a>path</a>
-   segment.
-   <p class=example id=example-unexpected-empty-path>"file:///c:/path//to/file"
    <td>
+    <p>The URL's <a>scheme</a> is "<code>file</code>" and it contains an empty <a>path</a> segment.
+    <p class=example id=example-unexpected-empty-path>"<code>file:///c:/path//to/file</code>"
+   <td>❌
   <tr>
    <td><dfn>invalid-URL-code-point</dfn>
-   <td><p>A code point that is not a <a>URL code point</a> or U+0025 (%) is found in the URL's
-   <a>path</a>, <a>query</a>, or <a for=url>fragment</a>.
-   <p class=example id=example-invalid-URL-code-point>"https://example.org/&gt;"
    <td>
+    <p>A code point that is not a <a>URL code point</a> or U+0025 (%) is found in the URL's
+    <a for=url>path</a>, <a for=url>query</a>, or <a for=url>fragment</a>.
+    <p class=example id=example-invalid-URL-code-point>"<code>https://example.org/></code>"
+   <td>❌
   <tr>
    <td><dfn>unescaped-percent-sign</dfn>
-   <td><p>A U+0025 (%) code point is found that is not followed by two <a>ASCII hex digits</a>,
-   representing a <a>percent-encoded byte</a>, in the URL's <a>path</a>, <a>query</a>, or
-   <a for=url>fragment</a>.
-   <p class=example id=example-unescaped-percent-sign>"https://example.org/%💩"
    <td>
+    <p>A U+0025 (%) is found that is not followed by two <a>ASCII hex digits</a>, in the URL's
+    <a for=url>path</a>, <a for=url>query</a>, or <a for=url>fragment</a>.
+    <p class=example id=example-unescaped-percent-sign>"<code>https://example.org/%s</code>"
+   <td>❌
   <tr>
    <td><dfn>unclosed-ipv6-address</dfn>
-   <td><p>An IPv6 address is missing the closing U+005D (]) code point.
-   <p class=example id=example-unclosed-ipv6-address>"https://[::1"
+   <td>
+    <p>An IPv6 address is missing the closing U+005D (]) code point.
+    <p class=example id=example-unclosed-ipv6-address>"<code>https://[::1</code>"
    <td>✅
   <tr>
    <td><dfn>domain-to-ascii-failure</dfn>
-   <td><p>The result of <a abstract-op lt=ToASCII>Unicode toASCII</a> records an error while
-   processing the input domain.
-   <p class=note>[[!UTS46]] conformance does not require the reporting of precise errors, only that
-   an error has occurred. If the [[!UTS46]] implementation reports precise error codes, user agents
-   are encouraged pass those codes along.
+   <td>
+    <p>The result of <a abstract-op lt=ToASCII>Unicode toASCII</a> records an error while processing
+    the input domain.
+    <p class=note>[[!UTS46]] conformance does not require the reporting of precise errors, only that
+    an error has occurred. If the [[!UTS46]] implementation reports precise error codes, user agents
+    are encouraged pass those codes along.
    <td>✅
   <tr>
    <td><dfn>domain-to-ascii-empty-domain-failure</dfn>
-   <td><p>The result of <a abstract-op lt=ToASCII>Unicode toASCII</a> returns an empty string. This
-   can be caused by a number of things, such as:
+   <td>
+    <p>The result of <a abstract-op lt=ToASCII>Unicode toASCII</a> returns an empty string. This can
+    be caused by a number of things, such as:
     <ul>
-     <li>Input consists of all ignorable code points
-     <li>Input is the string `<code>xn--</code>`
-     <li>Input is the empty string and the <i>VerifyDnsLength</i> option is set to false
+     <li>Input consists of all ignorable code points.
+     <li>Input is the string "<code>xn--</code>".
+     <li>Input is the empty string and the <i>VerifyDnsLength</i> option is set to false.
+    </ul>
    <td>✅
   <tr>
    <td><dfn>host-forbidden-code-point</dfn>
-   <td><p>The input's host contains a <a>forbidden host code point</a>.
-   <div class=example id=example-host-forbidden-code-point>
-    <p>Hosts are <a for=string>percent-decoded</a> before being processed when the URL
-    <a>is special</a>, which would result in the following host portion becoming "exa#mple.org".
-    <p>"https://exa%23mple.org"
+   <td>
+    <p>The input's host contains a <a>forbidden host code point</a>.
+    <div class=example id=example-host-forbidden-code-point>
+     <p>Hosts are <a for=string>percent-decoded</a> before being processed when the URL
+     <a>is special</a>, which would result in the following host portion becoming
+     "<code>exa#mple.org</code>".
+     <p>"<code>https://exa%23mple.org</code>"
+    </div>
    <td>✅
   <tr>
    <td><dfn>unexpected-non-decimal-number</dfn>
-   <td><p>The IPv4 address contains numbers expressed using hexadecimal or octal digits.
-    <p class=example id=example-unexpected-non-decimal-number>"https://127.0.0x0.1"
    <td>
+    <p>The IPv4 address contains numbers expressed using hexadecimal or octal digits.
+    <p class=example id=example-unexpected-non-decimal-number>"<code>https://127.0.0x0.1</code>"
+   <td>❌
   <tr>
    <td><dfn>ipv4-part-out-of-range</dfn>
-   <td><p>An IPv4 part exceeds 255. This is only fatal if the last part exceeds 255.
-   <p class=example id=example-ipv4-part-out-of-range>"https://255.255.4000.1"
+   <td>
+    <p>An IPv4 part exceeds 255. This is only fatal if the last part exceeds 255.
+    <p class=example id=example-ipv4-part-out-of-range>"<code>https://255.255.4000.1</code>"
    <td>✅
   <tr>
    <td><dfn>invalid-compressed-ipv6-address</dfn>
-   <td><p>An IPv6 address begins with improper compression.
-   <p class=example id=example-invalid-compressed-ipv6-address>"https://[:1]"
+   <td>
+    <p>An IPv6 address begins with improper compression.
+    <p class=example id=example-invalid-compressed-ipv6-address>"<code>https://[:1]</code>"
    <td>✅
   <tr>
    <td><dfn>ipv6-too-many-pieces</dfn>
-   <td><p>An IPv6 address contains more than 8 pieces.
-   <p class=example id=example-ipv6-too-many-pieces>"https://[1:2:3:4:5:6:7:8:9]"
+   <td>
+    <p>An IPv6 address contains more than 8 pieces.
+    <p class=example id=example-ipv6-too-many-pieces>"<code>https://[1:2:3:4:5:6:7:8:9]</code>"
    <td>✅
   <tr>
    <td><dfn>ipv6-multiple-compression</dfn>
-   <td><p>An IPv6 address is compressed in more than one spot.
-   <p class=example id=example-ipv6-multiple-compression>"https://[1::1::1]"
+   <td>
+    <p>An IPv6 address is compressed in more than one spot.
+    <p class=example id=example-ipv6-multiple-compression>"<code>https://[1::1::1]</code>"
    <td>✅
   <tr>
    <td><dfn>ipv4-in-ipv6-empty-part</dfn>
-   <td><p>An IPv6 address that contains an IPv4 address has an empty part in the IPv4 address.
-   <p class=example id=example-ipv4-in-ipv6-empty-part>"https://[ffff::.0.0.1]"
+   <td>
+    <p>An IPv6 address that contains an IPv4 address has an empty part in the IPv4 address.
+    <p class=example id=example-ipv4-in-ipv6-empty-part>"<code>https://[ffff::.0.0.1]</code>"
    <td>✅
   <tr>
    <td><dfn>ipv4-in-ipv6-too-many-pieces</dfn>
-   <td><p>An IPv6 address contains an IPv4 address and the IPv6 address has more than 6 pieces.
-   <p class=example id=example-ipv4-in-ipv6-too-many-pieces>"https://[1:1:1:1:1:1:1:127.0.0.1]"
+   <td>
+    <p>An IPv6 address contains an IPv4 address and the IPv6 address has more than 6 pieces.
+    <p class=example id=example-ipv4-in-ipv6-too-many-pieces>"<code>https://[1:1:1:1:1:1:1:127.0.0.1]</code>"
    <td>✅
   <tr>
    <td><dfn>ipv6-unexpected-eof</dfn>
-   <td><p>An IPv6 address unexpectedly ends.
-   <p class=example id=example-ipv6-unexpected-eof>"https://[1:2:3:]"
+   <td>
+    <p>An IPv6 address unexpectedly ends.
+    <p class=example id=example-ipv6-unexpected-eof>"<code>https://[1:2:3:]</code>"
    <td>✅
   <tr>
    <td><dfn>ipv6-unexpected-delimiter</dfn>
-   <td><p>An IPv6 address contains a code point that is not an <a>ASCII hex digit</a> and not a
-   U+003A (:) code point.
-   <p class=example id=example-ipv6-unexpected-delimiter>"https://[1:2:3!:4]"
+   <td>
+    <p>An IPv6 address contains a code point that is neither an <a>ASCII hex digit</a> nor a
+    U+003A (:).
+    <p class=example id=example-ipv6-unexpected-delimiter>"<code>https://[1:2:3!:4]</code>"
    <td>✅
   <tr>
    <td><dfn>ipv6-too-few-pieces</dfn>
-   <td><p>An uncompressed IPv6 address contains fewer than 8 pieces.
-   <p class=example id=example-ipv6-too-few-pieces>"https://[1:2:3]"
+   <td>
+    <p>An uncompressed IPv6 address contains fewer than 8 pieces.
+    <p class=example id=example-ipv6-too-few-pieces>"<code>https://[1:2:3]</code>"
    <td>✅
   <tr>
    <td><dfn>opaque-host-forbidden-code-point</dfn>
-   <td><p>When an <a>opaque host</a> (i.e. a URL that <a>is not special</a>) contains a
-   <a>forbidden host code point</a> minus the U+0025 (%) code point.
-   <p class=example id=example-opaque-host-forbidden-code-point>"foo://exa[mple.org"
+   <td>
+    <p>When an <a>opaque host</a> (in a URL that <a>is not special</a>) contains a
+    <a>forbidden host code point</a> excluding U+0025 (%).
+   <p class=example id=example-opaque-host-forbidden-code-point>"<code>foo://exa[mple.org</code>"
    <td>✅
   <tr>
    <td><dfn>ipv4-in-ipv6-too-many-parts</dfn>
-   <td><p>An IPv6 address contains an IPv4 address and the IPv4 address has more than 4 parts.
-   <p class=example id=example-ipv4-in-ipv6-too-many-parts>"https://[ffff::127.0.0.1.2]"
+   <td>
+    <p>An IPv6 address contains an IPv4 address and the IPv4 address has more than 4 parts.
+    <p class=example id=example-ipv4-in-ipv6-too-many-parts>"<code>https://[ffff::127.0.0.1.2]</code>"
    <td>✅
   <tr>
    <td><dfn>ipv4-in-ipv6-unexpected-code-point</dfn>
-   <td><p>An IPv6 address contains an IPv4 address whose parts contain code points other than
-   <a>ASCII digits</a> or is an empty string.
-   <p class=example id=example-ipv4-in-ipv6-unexpected-code-point>"https://[ffff::127.0.xyz.1]"
+   <td>
+    <p>An IPv6 address contains an IPv4 address whose parts contain code points other than
+    <a>ASCII digits</a> or is an empty string.
+    <p class=example id=example-ipv4-in-ipv6-unexpected-code-point>"<code>https://[ffff::127.0.xyz.1]</code>"
    <td>✅
   <tr>
    <td><dfn>ipv4-in-ipv6-invalid-first-part</dfn>
-   <td><p>The first part of an IPv4 address that is contained within an IPv6 address is 0.
-   <p class=example id=example-ipv4-in-ipv6-invalid-first-part>"https://[ffff::0.0.0.1]"
+   <td>
+    <p>The first part of an IPv4 address that is contained within an IPv6 address is 0.
+    <p class=example id=example-ipv4-in-ipv6-invalid-first-part>"<code>https://[ffff::0.0.0.1]</code>"
    <td>✅
   <tr>
    <td><dfn>ipv4-in-ipv6-part-out-of-range</dfn>
-   <td><p>An IPv4 address contained within an IPv6 address contains a part that exceeds 255.
-   <p class=example id=example-ipv4-in-ipv6-part-out-of-range>"https://[ffff::127.0.0.4000]"
+   <td>
+    <p>An IPv4 address contained within an IPv6 address contains a part that exceeds 255.
+    <p class=example id=example-ipv4-in-ipv6-part-out-of-range>"<code>https://[ffff::127.0.0.4000]</code>"
    <td>✅
   <tr>
    <td><dfn>ipv4-in-ipv6-too-few-parts</dfn>
-   <td><p>An IPv4 address contained within an IPv6 address does not contain exactly 4 parts.
-   <p class=example id=example-ipv4-in-ipv6-too-few-parts>"https://[ffff::127.0.0]"
+   <td>
+    <p>An IPv4 address contained within an IPv6 address does not contain exactly 4 parts.
+    <p class=example id=example-ipv4-in-ipv6-too-few-parts>"<code>https://[ffff::127.0.0]</code>"
    <td>✅
 </table>
 
@@ -1914,7 +1949,7 @@ string <var>input</var>, optionally with a <a>base URL</a> <var>base</var>, opti
      <a>no scheme state</a> and decrease <var>pointer</var> by 1.
 
      <li>
-      <p>Otherwise, <a>invalid-scheme-start-code-point</a> <a>validation error</a>, return failure.
+      <p>Otherwise, <a>invalid-scheme-start</a> <a>validation error</a>, return failure.
 
       <p class=note>This indication of failure is used exclusively by the {{Location}} object's
       {{Location/protocol}} setter.
@@ -2151,7 +2186,7 @@ string <var>input</var>, optionally with a <a>base URL</a> <var>base</var>, opti
       <p>If <a>c</a> is U+0040 (@), then:
 
       <ol>
-       <li><p><a>unexpected-commercial-at-code-point</a> <a>validation error</a>.
+       <li><p><a>unexpected-commercial-at</a> <a>validation error</a>.
 
        <li><p>If the <var>@ flag</var> is set, prepend "<code>%40</code>" to
        <var>buffer</var>.
