@@ -108,8 +108,9 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
    <td>❌
   <tr>
    <td><dfn>invalid-scheme-start</dfn>
-   <td><p>The first code point of a URL's <a for=url>scheme</a> is not an <a>ASCII alpha</a>.
-   <p class=example id=example-invalid-scheme-start>"3ttps://example.org"
+   <td>
+    <p>The first code point of a URL's <a for=url>scheme</a> is not an <a>ASCII alpha</a>.
+    <p class=example id=example-invalid-scheme-start>"3ttps://example.org"
    <td>✅
   <tr>
    <td><dfn>file-scheme-missing-following-solidus</dfn>
@@ -128,15 +129,15 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
   <tr>
    <td><dfn>missing-scheme-non-relative-url</dfn>
    <td>
-    <p>The input is missing a <a>scheme</a>, because it does not begin with an <a>ASCII alpha</a>,
-    and either no <a>base URL</a> was provided or the <a>base URL</a> cannot be used as a
-    <a>base URL</a> because its <a>cannot-be-a-base-URL flag</a> is set.
+    <p>The input is missing a <a for=url>scheme</a>, because it does not begin with an
+    <a>ASCII alpha</a>, and either no <a>base URL</a> was provided or the <a>base URL</a> cannot be
+    used as a <a>base URL</a> because its <a>cannot-be-a-base-URL flag</a> is set.
     <div class=example id=example-missing-scheme-non-relative-url>
-     <p>Input's <a>scheme</a> is missing and no <a>base URL</a> is given:
+     <p>Input's <a for=url>scheme</a> is missing and no <a>base URL</a> is given:
      <pre><code class=lang-javascript>
 let url = new URL("💩");</code></pre>
-     <p>Input's <a>scheme</a> is missing, but the <a>base URL</a>'s <a>cannot-be-a-base-URL flag</a>
-     is set.
+     <p>Input's <a for=url>scheme</a> is missing, but the <a>base URL</a>'s
+     <a>cannot-be-a-base-URL flag</a> is set.
      <pre><code class=lang-javascript>
 let url = new URL("💩", "mailto:user@example.org");</code></pre>
     </div>
@@ -158,7 +159,7 @@ let url = new URL("foo.html", "https://example.org/");</code></pre>
    <td><dfn>missing-solidus-before-authority</dfn>
    <td>
     <p>The URL <a>includes credentials</a> that are not preceded by "<code>//</code>".
-   <p class=example id=example-missing-solidus-before-authority>"<code>https:user@example.org</code>"
+    <p class=example id=example-missing-solidus-before-authority>"<code>https:user@example.org</code>"
    <td>❌
   <tr>
    <td><dfn>unexpected-commercial-at</dfn>
@@ -211,7 +212,7 @@ url.hostname = "";</code></pre>
    <td><dfn>unexpected-windows-drive-letter</dfn>
    <td>
     <p>The input is a <a>relative-URL string</a> that <a>starts with a Windows drive letter</a> and
-    the <a>base URL</a>'s <a>scheme</a> is "<code>file</code>".
+    the <a>base URL</a>'s <a for=url>scheme</a> is "<code>file</code>".
     <pre class=example id=example-unexpected-windows-drive-letter><code class=lang-javascript>
 let url = new URL("/c:/path/to/file", "file:///c:/");</code></pre>
    <td>❌
