@@ -187,12 +187,12 @@ let url = new URL("foo.html", "https://example.org/");</code></pre>
     <p class=example id=example-empty-host-special-scheme>"<code>https://#fragment</code>"
    <td>✅
   <tr>
-   <td><dfn>invalid-host</dfn>
+   <td><dfn>host-invalid</dfn>
    <td>
     <p>The <a for=url>host</a> portion of the URL is an empty string when it
     <a>includes credentials</a> or a <a>port</a> and the <a>basic URL parser</a>'s state is
     overridden.
-    <pre class=example id=example-invalid-host><code class=lang-javascript>
+    <pre class=example id=example-host-invalid><code class=lang-javascript>
 const url = new URL("https://example:9000");
 url.hostname = "";</code></pre>
    <td>❌
@@ -203,10 +203,10 @@ url.hostname = "";</code></pre>
     <p class=example id=example-port-out-of-range>"<code>https://example.org:70000</code>"
    <td>✅
   <tr>
-   <td><dfn>invalid-port</dfn>
+   <td><dfn>port-invalid</dfn>
    <td>
     <p>The input's port is invalid.
-    <p class=example id=example-invalid-port>"<code>https://example.org:7z</code>"
+    <p class=example id=example-port-invalid>"<code>https://example.org:7z</code>"
    <td>✅
   <tr>
    <td><dfn>unexpected-windows-drive-letter</dfn>
@@ -2286,7 +2286,7 @@ string <var>input</var>, optionally with a <a>base URL</a> <var>base</var>, opti
 
        <li><p>Otherwise, if <var>state override</var> is given, <var>buffer</var> is the empty
        string, and either <var>url</var> <a>includes credentials</a> or <var>url</var>'s
-       <a for=url>port</a> is non-null, <a>invalid-host</a> <a>validation error</a>, return.
+       <a for=url>port</a> is non-null, <a>host-invalid</a> <a>validation error</a>, return.
 
        <li><p>Let <var>host</var> be the result of <a>host parsing</a> <var>buffer</var> with
        <var>url</var> <a>is not special</a>.
@@ -2352,7 +2352,7 @@ string <var>input</var>, optionally with a <a>base URL</a> <var>base</var>, opti
        <li><p>Set <var>state</var> to <a>path start state</a> and decrease <var>pointer</var> by 1.
       </ol>
 
-     <li><p>Otherwise, <a>invalid-port</a> <a>validation error</a>, return failure.
+     <li><p>Otherwise, <a>port-invalid</a> <a>validation error</a>, return failure.
     </ol>
 
    <dt><dfn>file state</dfn>
