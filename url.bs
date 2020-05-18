@@ -108,21 +108,20 @@ valid input. User agents, especially conformance checkers, are encouraged to rep
    <td>❌
   <tr>
    <td><dfn>invalid-scheme-start</dfn>
-   <td><p>The first code point of a URL's <a>scheme</a> is not an <a>ASCII alpha</a>.
+   <td><p>The first code point of a URL's <a for=url>scheme</a> is not an <a>ASCII alpha</a>.
    <p class=example id=example-invalid-scheme-start>"3ttps://example.org"
    <td>✅
   <tr>
    <td><dfn>file-scheme-missing-following-solidus</dfn>
    <td>
-    <p>The URL parser encounters a URL with a "<code>file</code>" <a>scheme</a>, but it is not
+    <p>The URL parser encounters a URL with a "<code>file</code>" <a for=url>scheme</a> that is not
     followed by "<code>//</code>".
     <p class=example id=example-file-scheme-missing-following-solidus>"<code>file:c:/my-secret-folder</code>"
    <td>❌
   <tr>
    <td><dfn>invalid-scheme</dfn>
    <td>
-    <p>The URL's <a>scheme</a> contains a code point that is not an <a>ASCII alphanumeric</a>,
-    U+002B (+), U+002D (-), or U+002E (.), or is not followed by U+00A3 (:).
+    <p>The URL's <a for=url>scheme</a> contains an invalid code point.
     <p class=example id=example-invalid-scheme>"<code>^_^://example.org</code>" and
     "<code>https//example.org</code>"
    <td>✅
@@ -150,11 +149,10 @@ let url = new URL("💩", "mailto:user@example.org");</code></pre>
 let url = new URL("foo.html", "https://example.org/");</code></pre>
    <td>❌
   <tr>
-   <td><dfn>wrong-solidus-special-scheme</dfn>
+   <td><dfn>unexpected-reverse-solidus</dfn>
    <td>
-    <p>The URL has a <a>special scheme</a> and it uses U+005C (\) instead of U+002F (/) in its
-    <a for=url>path</a>.
-    <p class=example id=example-wrong-solidus-special-scheme>"<code>https://example.org\path\to\file</code>"
+    <p>The URL has a <a>special scheme</a> and it uses U+005C (\) instead of U+002F (/).
+    <p class=example id=example-unexpected-reverse-solidus>"<code>https://example.org\path\to\file</code>"
    <td>❌
   <tr>
    <td><dfn>missing-solidus-before-authority</dfn>
@@ -171,14 +169,14 @@ let url = new URL("foo.html", "https://example.org/");</code></pre>
   <tr>
    <td><dfn>missing-credentials</dfn>
    <td>
-    <p>A U+0040 (@) is found between the URL's <a>scheme</a> and <a for=url>host</a>, but the URL
-    does not <a>include credentials</a>.
+    <p>A U+0040 (@) is found between the URL's <a for=url>scheme</a> and <a for=url>host</a>, but
+    the URL does not <a>include credentials</a>.
     <p class=example id=example-missing-credentials>"<code>https://@example.org</code>"
    <td>✅
   <tr>
    <td><dfn>unexpected-port-without-host</dfn>
    <td>
-    <p>The URL contains a <a>port</a>, but no <a for=url>host</a>.
+    <p>The URL contains a <a for=url>port</a>, but no <a for=url>host</a>.
     <p class=example id=example-unexpected-port-without-host>"<code>https://:443</code>"
    <td>✅
   <tr>
@@ -226,8 +224,8 @@ let url = new URL("/c:/path/to/file", "file:///c:/");</code></pre>
   <tr>
    <td><dfn>unexpected-host-file-scheme</dfn>
    <td>
-    <p>The URL's <a>scheme</a> is changed to the "<code>file</code>" <a>scheme</a> and the existing
-    URL has a <a for=url>host</a>.
+    <p>The URL's <a for=url>scheme</a> is changed to "<code>file</code>" and the existing URL has a
+    <a for=url>host</a>.
     <pre class=example id=example-unexpected-host-file-scheme><code class=lang-javascript>
 const url = new URL("https://example.org");
 url.protocol = "file";</code></pre>
@@ -235,15 +233,16 @@ url.protocol = "file";</code></pre>
   <tr>
    <td><dfn>unexpected-empty-path</dfn>
    <td>
-    <p>The URL's <a>scheme</a> is "<code>file</code>" and it contains an empty <a>path</a> segment.
+    <p>The URL's <a for=url>scheme</a> is "<code>file</code>" and it contains an empty
+    <a for=url>path</a> segment.
     <p class=example id=example-unexpected-empty-path>"<code>file:///c:/path//to/file</code>"
    <td>❌
   <tr>
-   <td><dfn>invalid-URL-code-point</dfn>
+   <td><dfn>invalid-url-code-point</dfn>
    <td>
-    <p>A code point that is not a <a>URL code point</a> or U+0025 (%) is found in the URL's
+    <p>A code point is found that is not a <a>URL code point</a> or U+0025 (%), in the URL's
     <a for=url>path</a>, <a for=url>query</a>, or <a for=url>fragment</a>.
-    <p class=example id=example-invalid-URL-code-point>"<code>https://example.org/></code>"
+    <p class=example id=example-invalid-url-code-point>"<code>https://example.org/></code>"
    <td>❌
   <tr>
    <td><dfn>unescaped-percent-sign</dfn>
@@ -255,7 +254,7 @@ url.protocol = "file";</code></pre>
   <tr>
    <td><dfn>unclosed-ipv6-address</dfn>
    <td>
-    <p>An IPv6 address is missing the closing U+005D (]) code point.
+    <p>An IPv6 address is missing the closing U+005D (]).
     <p class=example id=example-unclosed-ipv6-address>"<code>https://[::1</code>"
    <td>✅
   <tr>
@@ -366,8 +365,8 @@ url.protocol = "file";</code></pre>
   <tr>
    <td><dfn>ipv4-in-ipv6-unexpected-code-point</dfn>
    <td>
-    <p>An IPv6 address contains an IPv4 address whose parts contain code points other than
-    <a>ASCII digits</a> or is an empty string.
+    <p>An IPv6 address contains an IPv4 address of which a part contain a code point other than an
+    <a>ASCII digits</a> or is the empty string.
     <p class=example id=example-ipv4-in-ipv6-unexpected-code-point>"<code>https://[ffff::127.0.xyz.1]</code>"
    <td>✅
   <tr>
@@ -1186,10 +1185,10 @@ then runs these steps:
  <a>opaque-host-forbidden-code-point</a> <a>validation error</a>, return failure.
 
  <li><p>If <var>input</var> contains a <a>code point</a> that is not a <a>URL code point</a> and not
- U+0025 (%), <a>validation error</a>.
+ U+0025 (%), <a>invalid-url-code-point</a> <a>validation error</a>.
 
  <li><p>If <var>input</var> contains a U+0025 (%) and the two <a>code points</a> following it are
- not <a>ASCII hex digits</a>, <a>validation error</a>.
+ not <a>ASCII hex digits</a>, <a>unescaped-percent-sign</a> <a>validation error</a>.
 
  <li><p>Return the result of running <a for=string>UTF-8 percent-encode</a> on <var>input</var>
  using the <a>C0 control percent-encode set</a>.
@@ -2091,7 +2090,7 @@ string <var>input</var>, optionally with a <a>base URL</a> <var>base</var>, opti
      <li><p>If <a>c</a> is U+002F (/), then set <var>state</var> to <a>relative slash state</a>.
 
      <li><p>Otherwise, if <var>url</var> <a>is special</a> and <a>c</a> is U+005C (\),
-     <a>wrong-solidus-special-scheme</a> <a>validation error</a>, set <var>state</var> to
+     <a>unexpected-reverse-solidus</a> <a>validation error</a>, set <var>state</var> to
      <a>relative slash state</a>.
 
      <li>
@@ -2137,7 +2136,7 @@ string <var>input</var>, optionally with a <a>base URL</a> <var>base</var>, opti
       <p>If <var>url</var> <a>is special</a> and <a>c</a> is U+002F (/) or U+005C (\), then:
 
       <ol>
-       <li><p>If <a>c</a> is U+005C (\), <a>wrong-solidus-special-scheme</a>
+       <li><p>If <a>c</a> is U+005C (\), <a>unexpected-reverse-solidus</a>
        <a>validation error</a>.
 
        <li><p>Set <var>state</var> to <a>special authority ignore slashes state</a>.
@@ -2364,8 +2363,7 @@ string <var>input</var>, optionally with a <a>base URL</a> <var>base</var>, opti
       <p>If <a>c</a> is U+002F (/) or U+005C (\), then:
 
       <ol>
-       <li><p>If <a>c</a> is U+005C (\), <a>wrong-solidus-special-scheme</a>
-       <a>validation error</a>.
+       <li><p>If <a>c</a> is U+005C (\), <a>unexpected-reverse-solidus</a> <a>validation error</a>.
 
        <li><p>Set <var>state</var> to <a>file slash state</a>.
       </ol>
@@ -2423,8 +2421,7 @@ string <var>input</var>, optionally with a <a>base URL</a> <var>base</var>, opti
       <p>If <a>c</a> is U+002F (/) or U+005C (\), then:
 
       <ol>
-       <li><p>If <a>c</a> is U+005C (\), <a>wrong-solidus-special-scheme</a>
-       <a>validation error</a>.
+       <li><p>If <a>c</a> is U+005C (\), <a>unexpected-reverse-solidus</a> <a>validation error</a>.
 
        <li><p>Set <var>state</var> to <a>file host state</a>.
       </ol>
@@ -2514,8 +2511,7 @@ string <var>input</var>, optionally with a <a>base URL</a> <var>base</var>, opti
       <p>If <var>url</var> <a>is special</a>, then:
 
       <ol>
-       <li><p>If <a>c</a> is U+005C (\), <a>wrong-solidus-special-scheme</a>
-       <a>validation error</a>.
+       <li><p>If <a>c</a> is U+005C (\), <a>unexpected-reverse-solidus</a> <a>validation error</a>.
 
        <li><p>Set <var>state</var> to <a>path state</a>.
 
@@ -2557,7 +2553,7 @@ string <var>input</var>, optionally with a <a>base URL</a> <var>base</var>, opti
 
       <ol>
        <li><p>If <var>url</var> <a>is special</a> and <a>c</a> is U+005C (\),
-       <a>wrong-solidus-special-scheme</a> <a>validation error</a>.
+       <a>unexpected-reverse-solidus</a> <a>validation error</a>.
 
        <li>
         <p>If <var>buffer</var> is a <a>double-dot path segment</a>, then:
