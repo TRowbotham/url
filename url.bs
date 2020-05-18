@@ -198,13 +198,13 @@ url.hostname = "";</code></pre>
   <tr>
    <td><dfn>port-out-of-range</dfn>
    <td>
-    <p>The input's port is a <a>URL-port string</a>, but it exceeds 65,535.
+    <p>The input's port is too big.
     <p class=example id=example-port-out-of-range>"<code>https://example.org:70000</code>"
    <td>✅
   <tr>
    <td><dfn>invalid-port</dfn>
    <td>
-    <p>The input's port is not a <a>URL-port string</a>.
+    <p>The input's port is invalid.
     <p class=example id=example-invalid-port>"<code>https://example.org:7z</code>"
    <td>✅
   <tr>
